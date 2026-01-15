@@ -1,6 +1,5 @@
 .blogSection {
-  padding: 60px 0;
-  background-color: #f9f9f9;
+  padding: 128px 0;
 }
 
 .featuredPost img {
@@ -11,32 +10,68 @@
 }
 
 .featuredPost h3 {
-  font-size: 24px;
+  font-size: 28px;
   font-weight: bold;
   margin-bottom: 10px;
+  color: #232536;
 }
 
 .meta {
-  color: #666;
+  color: #4c4c4c;
   font-size: 14px;
   margin-bottom: 15px;
+  font-weight: 600;
 }
 
 .btnYellow {
-  background-color: #ffd700;
-  color: #000;
-  padding: 10px 20px;
+  background-color: #ffd050;
+  color: #232536;
   border: none;
-  border-radius: 5px;
-  cursor: pointer;
+  border-radius: 0;
+  padding: 16px 48px;
+  font-weight: 600;
 }
 
 .postItem {
-  margin-bottom: 30px;
+  padding: 20px;
+}
+
+.postItem:hover {
+  background-color: #fbf6ea;
+  cursor: pointer;
 }
 
 .postItem h3 {
   font-size: 18px;
   font-weight: bold;
   margin-bottom: 5px;
+  color: #232536;
+}
+
+.featuredPost {
+  padding: 32px;
+  border: 1px solid #6d6e76;
+}
+
+.authorTitle {
+  color: #592ea9;
+  font-weight: 600;
+}
+
+.blogSection h2 {
+  margin-bottom: 32px;
+  color: #232536;
+  font-size: 36px;
+}
+
+.featuredPostText {
+  color: #4c4c4c;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.viewAllLink {
+  color: #592ea9;
+  font-weight: 400;
+  text-decoration: none;
 }

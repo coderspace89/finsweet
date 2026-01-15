@@ -21,6 +21,16 @@
       "type": "component",
       "component": "blocks.hero-section",
       "repeatable": false
+    },
+    "About": {
+      "type": "component",
+      "component": "blocks.about-section",
+      "repeatable": false
+    },
+    "Mission": {
+      "type": "component",
+      "component": "blocks.mission-block",
+      "repeatable": false
     }
   }
 }

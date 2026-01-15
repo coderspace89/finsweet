@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_blocks_mission_blocks",
+  "info": {
+    "displayName": "Mission Block"
+  },
+  "options": {},
+  "attributes": {
+    "blockTitle": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    }
+  },
+  "config": {}
+}

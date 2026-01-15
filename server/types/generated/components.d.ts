@@ -1,5 +1,18 @@
 import type { Schema, Struct } from '@strapi/strapi';
 
+export interface BlocksAboutSection extends Struct.ComponentSchema {
+  collectionName: 'components_blocks_about_sections';
+  info: {
+    displayName: 'About Block';
+  };
+  attributes: {
+    blockTitle: Schema.Attribute.String;
+    cta: Schema.Attribute.String;
+    description: Schema.Attribute.Text;
+    title: Schema.Attribute.String;
+  };
+}
+
 export interface BlocksHeroSection extends Struct.ComponentSchema {
   collectionName: 'components_blocks_hero_sections';
   info: {
@@ -13,6 +26,18 @@ export interface BlocksHeroSection extends Struct.ComponentSchema {
     description: Schema.Attribute.Text;
     headline: Schema.Attribute.String;
     image: Schema.Attribute.Media<'images'>;
+  };
+}
+
+export interface BlocksMissionBlock extends Struct.ComponentSchema {
+  collectionName: 'components_blocks_mission_blocks';
+  info: {
+    displayName: 'Mission Block';
+  };
+  attributes: {
+    blockTitle: Schema.Attribute.String;
+    description: Schema.Attribute.Text;
+    title: Schema.Attribute.String;
   };
 }
 
@@ -54,7 +79,9 @@ export interface LayoutHeader extends Struct.ComponentSchema {
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
+      'blocks.about-section': BlocksAboutSection;
       'blocks.hero-section': BlocksHeroSection;
+      'blocks.mission-block': BlocksMissionBlock;
       'elements.links': ElementsLinks;
       'elements.logo': ElementsLogo;
       'layout.header': LayoutHeader;
