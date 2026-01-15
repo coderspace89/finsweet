@@ -1,0 +1,23 @@
+.headerBg {
+  background-color: #232536;
+}
+
+.navlinks {
+  text-transform: capitalize;
+  color: #fff;
+  margin-right: 24px;
+}
+
+.navlinks:hover {
+  color: #ffd050;
+}
+
+.headerBtn {
+  color: #232536;
+  text-transform: capitalize;
+  padding: 16px 48px;
+  background-color: #fff;
+  border: none;
+  border-radius: 0;
+  font-weight: 600;
+}

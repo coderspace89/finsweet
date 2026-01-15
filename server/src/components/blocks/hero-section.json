@@ -1,0 +1,35 @@
+{
+  "collectionName": "components_blocks_hero_sections",
+  "info": {
+    "displayName": "Hero Section"
+  },
+  "options": {},
+  "attributes": {
+    "categoryText": {
+      "type": "string"
+    },
+    "headline": {
+      "type": "string"
+    },
+    "author": {
+      "type": "string"
+    },
+    "dateText": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "buttonText": {
+      "type": "string"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    }
+  },
+  "config": {}
+}

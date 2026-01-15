@@ -1,0 +1,48 @@
+.container {
+  padding: 128px 0;
+}
+
+.title {
+  font-size: 48px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.categoryText {
+  text-transform: uppercase;
+  font-weight: 400;
+  font-size: 14px;
+  color: #d9d9d9;
+}
+
+.categoryText span {
+  font-weight: 700;
+}
+
+.authorText {
+  color: #ffd050;
+}
+
+.descriptionText {
+  color: #d9d9d9;
+  margin-bottom: 48px;
+}
+
+.heroBtn {
+  background-color: #ffd050;
+  color: #232536;
+  border: none;
+  border-radius: 0;
+  padding: 16px 48px;
+  font-weight: 600;
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 64px 10px;
+  }
+
+  .title {
+    font-size: 32px;
+  }
+}
