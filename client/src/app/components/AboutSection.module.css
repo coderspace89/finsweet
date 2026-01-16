@@ -1,3 +1,57 @@
 .sectionBg {
-    background-color: #F4F0F8;
+  background-color: #f4f0f8;
+  padding: 96px 80px;
+}
+
+.blockTitle {
+  color: #232536;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.aboutTitle {
+  color: #232536;
+  font-size: 36px;
+  font-weight: 700;
+}
+
+.aboutDescription {
+  color: #6d6e76;
+  font-weight: 400;
+  font-size: 16px;
+  margin-bottom: 16px;
+}
+
+.aboutLink {
+  color: #592ea9;
+  font-weight: 700;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.missionTitle {
+  color: #232536;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.missionDescription {
+  color: #6d6e76;
+  font-weight: 400;
+  font-size: 16px;
+  margin-bottom: 16px;
+}
+
+@media(max-width: 768px) {
+  .sectionBg {
+    padding: 48px 24px;
+  }
+
+  .aboutTitle {
+    font-size: 28px;
+  }
+
+  .missionTitle {
+    font-size: 24px;
+  }
 }

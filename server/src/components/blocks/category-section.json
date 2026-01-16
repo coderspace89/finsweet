@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_blocks_category_sections",
+  "info": {
+    "displayName": "Category Section"
+  },
+  "options": {},
+  "attributes": {
+    "icon": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "isHighlighted": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "config": {}
+}

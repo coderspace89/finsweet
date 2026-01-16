@@ -1,16 +1,16 @@
 import React from "react";
 import Hero from "./components/Hero";
-import Header from "./components/layout/Header";
 import BlogSection from "./components/BlogSection";
 import AboutSection from "./components/AboutSection";
+import CategorySection from "./components/CategorySection";
 
 const page = () => {
   return (
     <div>
-      <Header />
       <Hero />
       <BlogSection />
       <AboutSection />
+      <CategorySection />
     </div>
   );
 };

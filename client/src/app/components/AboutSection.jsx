@@ -49,7 +49,7 @@ const AboutSection = () => {
   return (
     <section>
       <Container>
-        <Row className={`position-relative p-5 ${aboutStyles.sectionBg}`}>
+        <Row className={`position-relative ${aboutStyles.sectionBg}`}>
           <div className="position-absolute top-0 start-0 translate-middle-y">
             <svg
               width="100%"
@@ -62,19 +62,33 @@ const AboutSection = () => {
               <path d="M779 23H1061V0H779.303L779 23Z" fill="#592EA9" />
             </svg>
           </div>
-          <Col lg={6}>
+          <Col lg={6} className="mb-4 mb-lg-0">
             <div>
-              <p>{aboutData.About.blockTitle}</p>
-              <h2>{aboutData.About.title}</h2>
-              <p>{aboutData.About.description}</p>
-              <Link href="/about">{aboutData.About.cta}</Link>
+              <p className={aboutStyles.blockTitle}>
+                {aboutData.About.blockTitle}
+              </p>
+              <h2 className={aboutStyles.aboutTitle}>
+                {aboutData.About.title}
+              </h2>
+              <p className={aboutStyles.aboutDescription}>
+                {aboutData.About.description}
+              </p>
+              <Link href="/about" className={aboutStyles.aboutLink}>
+                {aboutData.About.cta}
+              </Link>
             </div>
           </Col>
           <Col lg={6}>
             <div>
-              <p>{missionData.Mission.blockTitle}</p>
-              <h2>{missionData.Mission.title}</h2>
-              <p>{missionData.Mission.description}</p>
+              <p className={aboutStyles.blockTitle}>
+                {missionData.Mission.blockTitle}
+              </p>
+              <h2 className={aboutStyles.missionTitle}>
+                {missionData.Mission.title}
+              </h2>
+              <p className={aboutStyles.missionDescription}>
+                {missionData.Mission.description}
+              </p>
             </div>
           </Col>
         </Row>

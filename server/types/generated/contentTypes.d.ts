@@ -472,6 +472,7 @@ export interface ApiHomePageHomePage extends Struct.SingleTypeSchema {
   };
   attributes: {
     About: Schema.Attribute.Component<'blocks.about-section', false>;
+    categories: Schema.Attribute.Component<'blocks.category-section', true>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;

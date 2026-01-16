@@ -51,7 +51,7 @@ const BlogSection = () => {
     <div className={blogStyles.blogSection}>
       <div className="container">
         <div className="row">
-          <div className="col-lg-7">
+          <div className="col-lg-7 mb-4 mb-lg-0">
             <h2>Featured Post</h2>
             {featuredPost && (
               <div className={blogStyles.featuredPost}>
@@ -91,10 +91,15 @@ const BlogSection = () => {
             </div>
             {allPosts.map((post) => (
               <div key={post.id} className={blogStyles.postItem}>
-                <Link href={`/blog/${post.id}`} className="text-decoration-none">
+                <Link
+                  href={`/blog/${post.id}`}
+                  className="text-decoration-none"
+                >
                   <p className={blogStyles.meta}>
                     By{" "}
-                    <span className={blogStyles.authorTitle}>{post.author}</span>{" "}
+                    <span className={blogStyles.authorTitle}>
+                      {post.author}
+                    </span>{" "}
                     | {formatDate(post.date)}
                   </p>
                   <h3>{post.title}</h3>
