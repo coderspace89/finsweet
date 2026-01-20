@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_blocks_logos_blocks",
+  "info": {
+    "displayName": "Logos Block"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "logoImages": {
+      "type": "component",
+      "component": "elements.logo-image",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

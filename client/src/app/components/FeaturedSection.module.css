@@ -1,0 +1,29 @@
+.featured-in {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  justify-items: center;
+  gap: 50px;
+}
+
+.featured-in h2 {
+  font-size: 24px;
+  color: #6d6e76;
+  font-weight: 700;
+}
+
+.featured-in .logos {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  justify-items: center;
+  gap: 50px;
+}
+
+.featured-in .logos img {
+  width: 100%;
+  height: auto;
+}
+
+.featured-section {
+  padding-bottom: 128px;
+}

@@ -36,6 +36,21 @@
       "type": "component",
       "component": "blocks.category-section",
       "repeatable": true
+    },
+    "Discover": {
+      "type": "component",
+      "component": "blocks.discover-section",
+      "repeatable": false
+    },
+    "Authors": {
+      "type": "component",
+      "component": "blocks.authors-list",
+      "repeatable": false
+    },
+    "Logos": {
+      "type": "component",
+      "component": "blocks.logos-block",
+      "repeatable": true
     }
   }
 }

@@ -1,0 +1,76 @@
+.textColBg {
+  background-color: #fff;
+  padding: 40px;
+}
+
+.discoverSection {
+  padding-bottom: 128px;
+}
+
+.blockTitle {
+  text-transform: uppercase;
+  color: #232536;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.title {
+  font-size: 48px;
+  font-weight: 700;
+  color: #232536;
+  margin-top: 24px;
+  margin-bottom: 16px;
+}
+
+.description {
+  font-size: 16px;
+  color: #6d6e76;
+  margin-bottom: 32px;
+  font-weight: 400;
+}
+
+.btnYellow {
+  background-color: #ffd050;
+  color: #232536;
+  border: none;
+  border-radius: 0;
+  padding: 16px 48px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+@media (max-width: 768px) {
+  .discoverSection {
+    padding-bottom: 64px;
+  }
+
+  .title {
+    font-size: 32px;
+    margin-top: 16px;
+    margin-bottom: 12px;
+  }
+
+  .description {
+    font-size: 14px;
+    margin-bottom: 24px;
+  }
+
+  .btnYellow {
+    padding: 12px 32px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 600px) {
+  .textColBg {
+    padding: 24px;
+    position: unset !important;
+    top: unset !important;
+    left: unset !important;
+    transform: unset !important;
+  }
+  .colBg {
+    height: 300px !important;
+    background-size: cover !important;
+  }
+}

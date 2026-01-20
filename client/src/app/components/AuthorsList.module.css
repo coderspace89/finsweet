@@ -1,0 +1,28 @@
+.sectionTitle {
+  margin-bottom: 48px;
+  color: #232536;
+  font-size: 36px;
+  font-weight: 700;
+}
+
+.authorSection {
+  padding-bottom: 128px;
+}
+
+.authorTitle {
+  color: #232536;
+  font-size: 28px;
+  font-weight: 700;
+  margin-top: 20px;
+}
+
+.authorRole {
+  color: #6d6e76;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.authorCard {
+  background-color: #f4f4f4;
+  padding: 20px;
+}

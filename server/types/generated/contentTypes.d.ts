@@ -472,11 +472,13 @@ export interface ApiHomePageHomePage extends Struct.SingleTypeSchema {
   };
   attributes: {
     About: Schema.Attribute.Component<'blocks.about-section', false>;
+    Authors: Schema.Attribute.Component<'blocks.authors-list', false>;
     categories: Schema.Attribute.Component<'blocks.category-section', true>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     description: Schema.Attribute.Text;
+    Discover: Schema.Attribute.Component<'blocks.discover-section', false>;
     Hero: Schema.Attribute.Component<'blocks.hero-section', false>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
@@ -484,6 +486,7 @@ export interface ApiHomePageHomePage extends Struct.SingleTypeSchema {
       'api::home-page.home-page'
     > &
       Schema.Attribute.Private;
+    Logos: Schema.Attribute.Component<'blocks.logos-block', true>;
     Mission: Schema.Attribute.Component<'blocks.mission-block', false>;
     publishedAt: Schema.Attribute.DateTime;
     title: Schema.Attribute.String;

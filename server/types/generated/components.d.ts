@@ -13,6 +13,47 @@ export interface BlocksAboutSection extends Struct.ComponentSchema {
   };
 }
 
+export interface BlocksAuthorCard extends Struct.ComponentSchema {
+  collectionName: 'components_blocks_author_cards';
+  info: {
+    displayName: 'Author Card';
+  };
+  attributes: {
+    image: Schema.Attribute.Media<'images', true>;
+    name: Schema.Attribute.String;
+    role: Schema.Attribute.String;
+    socialLinks: Schema.Attribute.JSON &
+      Schema.Attribute.DefaultTo<{
+        facebook: {
+          icon: 'facebook-f';
+          url: '';
+        };
+        instagram: {
+          icon: 'instagram';
+          url: '';
+        };
+        linkedin: {
+          icon: 'linkedin-in';
+          url: '';
+        };
+        twitter: {
+          icon: 'twitter';
+          url: '';
+        };
+      }>;
+  };
+}
+
+export interface BlocksAuthorsList extends Struct.ComponentSchema {
+  collectionName: 'components_blocks_authors_lists';
+  info: {
+    displayName: 'Authors List';
+  };
+  attributes: {
+    authors: Schema.Attribute.Component<'blocks.author-card', true>;
+  };
+}
+
 export interface BlocksCategorySection extends Struct.ComponentSchema {
   collectionName: 'components_blocks_category_sections';
   info: {
@@ -22,6 +63,21 @@ export interface BlocksCategorySection extends Struct.ComponentSchema {
     description: Schema.Attribute.Text;
     icon: Schema.Attribute.Media<'images'>;
     isHighlighted: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface BlocksDiscoverSection extends Struct.ComponentSchema {
+  collectionName: 'components_blocks_discover_sections';
+  info: {
+    displayName: 'Discover Section';
+  };
+  attributes: {
+    blockTitle: Schema.Attribute.String;
+    buttonLink: Schema.Attribute.String;
+    buttonText: Schema.Attribute.String;
+    description: Schema.Attribute.Text;
+    image: Schema.Attribute.Media<'images', true>;
     title: Schema.Attribute.String;
   };
 }
@@ -39,6 +95,17 @@ export interface BlocksHeroSection extends Struct.ComponentSchema {
     description: Schema.Attribute.Text;
     headline: Schema.Attribute.String;
     image: Schema.Attribute.Media<'images'>;
+  };
+}
+
+export interface BlocksLogosBlock extends Struct.ComponentSchema {
+  collectionName: 'components_blocks_logos_blocks';
+  info: {
+    displayName: 'Logos Block';
+  };
+  attributes: {
+    logoImages: Schema.Attribute.Component<'elements.logo-image', true>;
+    title: Schema.Attribute.String;
   };
 }
 
@@ -77,6 +144,16 @@ export interface ElementsLogo extends Struct.ComponentSchema {
   };
 }
 
+export interface ElementsLogoImage extends Struct.ComponentSchema {
+  collectionName: 'components_elements_logo_images';
+  info: {
+    displayName: 'Logo Image';
+  };
+  attributes: {
+    image: Schema.Attribute.Media<'images'>;
+  };
+}
+
 export interface LayoutHeader extends Struct.ComponentSchema {
   collectionName: 'components_layout_headers';
   info: {
@@ -93,11 +170,16 @@ declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
       'blocks.about-section': BlocksAboutSection;
+      'blocks.author-card': BlocksAuthorCard;
+      'blocks.authors-list': BlocksAuthorsList;
       'blocks.category-section': BlocksCategorySection;
+      'blocks.discover-section': BlocksDiscoverSection;
       'blocks.hero-section': BlocksHeroSection;
+      'blocks.logos-block': BlocksLogosBlock;
       'blocks.mission-block': BlocksMissionBlock;
       'elements.links': ElementsLinks;
       'elements.logo': ElementsLogo;
+      'elements.logo-image': ElementsLogoImage;
       'layout.header': LayoutHeader;
     }
   }

@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_elements_logo_images",
+  "info": {
+    "displayName": "Logo Image"
+  },
+  "options": {},
+  "attributes": {
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    }
+  },
+  "config": {}
+}

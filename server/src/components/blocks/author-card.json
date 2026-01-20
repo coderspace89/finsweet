@@ -1,0 +1,42 @@
+{
+  "collectionName": "components_blocks_author_cards",
+  "info": {
+    "displayName": "Author Card"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "role": {
+      "type": "string"
+    },
+    "image": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": ["images"]
+    },
+    "socialLinks": {
+      "type": "json",
+      "default": {
+        "facebook": {
+          "url": "",
+          "icon": "facebook-f"
+        },
+        "twitter": {
+          "url": "",
+          "icon": "twitter"
+        },
+        "instagram": {
+          "url": "",
+          "icon": "instagram"
+        },
+        "linkedin": {
+          "url": "",
+          "icon": "linkedin-in"
+        }
+      }
+    }
+  },
+  "config": {}
+}

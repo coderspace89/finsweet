@@ -1,0 +1,32 @@
+{
+  "collectionName": "components_blocks_discover_sections",
+  "info": {
+    "displayName": "Discover Section"
+  },
+  "options": {},
+  "attributes": {
+    "blockTitle": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "buttonText": {
+      "type": "string"
+    },
+    "buttonLink": {
+      "type": "string"
+    },
+    "image": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images"
+      ]
+    }
+  },
+  "config": {}
+}

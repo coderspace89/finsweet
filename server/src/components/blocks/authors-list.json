@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_blocks_authors_lists",
+  "info": {
+    "displayName": "Authors List"
+  },
+  "options": {},
+  "attributes": {
+    "authors": {
+      "type": "component",
+      "component": "blocks.author-card",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}
