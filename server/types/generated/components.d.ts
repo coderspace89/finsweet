@@ -121,6 +121,19 @@ export interface BlocksMissionBlock extends Struct.ComponentSchema {
   };
 }
 
+export interface BlocksTestimonialsSection extends Struct.ComponentSchema {
+  collectionName: 'components_blocks_testimonials_sections';
+  info: {
+    displayName: 'Testimonials Section';
+  };
+  attributes: {
+    blockTitle: Schema.Attribute.String;
+    description: Schema.Attribute.Text;
+    Testimonials: Schema.Attribute.Component<'elements.testimonial', true>;
+    title: Schema.Attribute.String;
+  };
+}
+
 export interface ElementsLinks extends Struct.ComponentSchema {
   collectionName: 'components_elements_links';
   info: {
@@ -154,6 +167,19 @@ export interface ElementsLogoImage extends Struct.ComponentSchema {
   };
 }
 
+export interface ElementsTestimonial extends Struct.ComponentSchema {
+  collectionName: 'components_elements_testimonials';
+  info: {
+    displayName: 'Testimonial';
+  };
+  attributes: {
+    authorLocation: Schema.Attribute.String;
+    authorName: Schema.Attribute.String;
+    image: Schema.Attribute.Media<'images'>;
+    quote: Schema.Attribute.Text;
+  };
+}
+
 export interface LayoutHeader extends Struct.ComponentSchema {
   collectionName: 'components_layout_headers';
   info: {
@@ -177,9 +203,11 @@ declare module '@strapi/strapi' {
       'blocks.hero-section': BlocksHeroSection;
       'blocks.logos-block': BlocksLogosBlock;
       'blocks.mission-block': BlocksMissionBlock;
+      'blocks.testimonials-section': BlocksTestimonialsSection;
       'elements.links': ElementsLinks;
       'elements.logo': ElementsLogo;
       'elements.logo-image': ElementsLogoImage;
+      'elements.testimonial': ElementsTestimonial;
       'layout.header': LayoutHeader;
     }
   }

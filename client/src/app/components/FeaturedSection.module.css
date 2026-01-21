@@ -27,3 +27,11 @@
 .featured-section {
   padding-bottom: 128px;
 }
+
+@media (max-width: 600px) {
+  .featured-in .logos,
+  .featured-in {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

@@ -489,6 +489,10 @@ export interface ApiHomePageHomePage extends Struct.SingleTypeSchema {
     Logos: Schema.Attribute.Component<'blocks.logos-block', true>;
     Mission: Schema.Attribute.Component<'blocks.mission-block', false>;
     publishedAt: Schema.Attribute.DateTime;
+    Testimonials: Schema.Attribute.Component<
+      'blocks.testimonials-section',
+      false
+    >;
     title: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &

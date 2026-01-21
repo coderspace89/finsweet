@@ -51,6 +51,11 @@
       "type": "component",
       "component": "blocks.logos-block",
       "repeatable": true
+    },
+    "Testimonials": {
+      "type": "component",
+      "component": "blocks.testimonials-section",
+      "repeatable": false
     }
   }
 }
