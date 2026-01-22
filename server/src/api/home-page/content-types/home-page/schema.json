@@ -56,6 +56,11 @@
       "type": "component",
       "component": "blocks.testimonials-section",
       "repeatable": false
+    },
+    "Join": {
+      "type": "component",
+      "component": "blocks.join-section",
+      "repeatable": false
     }
   }
 }

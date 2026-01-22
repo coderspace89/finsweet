@@ -7,6 +7,7 @@ import DiscoverSection from "./components/DiscoverSection";
 import AuthorsList from "./components/AuthorsList";
 import FeaturedSection from "./components/FeaturedSection";
 import Testimonials from "./components/Testimonials";
+import JoinSection from "./components/JoinSection";
 
 const page = () => {
   return (
@@ -19,6 +20,7 @@ const page = () => {
       <AuthorsList />
       <FeaturedSection />
       <Testimonials />
+      <JoinSection />
     </div>
   );
 };

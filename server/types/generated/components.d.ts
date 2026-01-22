@@ -98,6 +98,19 @@ export interface BlocksHeroSection extends Struct.ComponentSchema {
   };
 }
 
+export interface BlocksJoinSection extends Struct.ComponentSchema {
+  collectionName: 'components_blocks_join_sections';
+  info: {
+    displayName: 'Join Section';
+  };
+  attributes: {
+    buttonLink: Schema.Attribute.String;
+    buttonText: Schema.Attribute.String;
+    description: Schema.Attribute.Text;
+    title: Schema.Attribute.String;
+  };
+}
+
 export interface BlocksLogosBlock extends Struct.ComponentSchema {
   collectionName: 'components_blocks_logos_blocks';
   info: {
@@ -118,6 +131,18 @@ export interface BlocksMissionBlock extends Struct.ComponentSchema {
     blockTitle: Schema.Attribute.String;
     description: Schema.Attribute.Text;
     title: Schema.Attribute.String;
+  };
+}
+
+export interface BlocksSignupBlock extends Struct.ComponentSchema {
+  collectionName: 'components_blocks_signup_blocks';
+  info: {
+    displayName: 'Signup Block';
+  };
+  attributes: {
+    buttonText: Schema.Attribute.String;
+    emailPlaceholder: Schema.Attribute.String;
+    heading: Schema.Attribute.Text;
   };
 }
 
@@ -167,6 +192,17 @@ export interface ElementsLogoImage extends Struct.ComponentSchema {
   };
 }
 
+export interface ElementsSocialLink extends Struct.ComponentSchema {
+  collectionName: 'components_elements_social_links';
+  info: {
+    displayName: 'Social Link';
+  };
+  attributes: {
+    icon: Schema.Attribute.Media<'images'>;
+    url: Schema.Attribute.String;
+  };
+}
+
 export interface ElementsTestimonial extends Struct.ComponentSchema {
   collectionName: 'components_elements_testimonials';
   info: {
@@ -177,6 +213,23 @@ export interface ElementsTestimonial extends Struct.ComponentSchema {
     authorName: Schema.Attribute.String;
     image: Schema.Attribute.Media<'images'>;
     quote: Schema.Attribute.Text;
+  };
+}
+
+export interface LayoutFooter extends Struct.ComponentSchema {
+  collectionName: 'components_layout_footers';
+  info: {
+    displayName: 'Footer';
+  };
+  attributes: {
+    address: Schema.Attribute.Text;
+    email: Schema.Attribute.Email;
+    image: Schema.Attribute.Media<'images'>;
+    logoText: Schema.Attribute.String;
+    navigation: Schema.Attribute.Component<'elements.links', true>;
+    phone: Schema.Attribute.String;
+    Signup: Schema.Attribute.Component<'blocks.signup-block', false>;
+    SocialLinks: Schema.Attribute.Component<'elements.social-link', true>;
   };
 }
 
@@ -201,13 +254,17 @@ declare module '@strapi/strapi' {
       'blocks.category-section': BlocksCategorySection;
       'blocks.discover-section': BlocksDiscoverSection;
       'blocks.hero-section': BlocksHeroSection;
+      'blocks.join-section': BlocksJoinSection;
       'blocks.logos-block': BlocksLogosBlock;
       'blocks.mission-block': BlocksMissionBlock;
+      'blocks.signup-block': BlocksSignupBlock;
       'blocks.testimonials-section': BlocksTestimonialsSection;
       'elements.links': ElementsLinks;
       'elements.logo': ElementsLogo;
       'elements.logo-image': ElementsLogoImage;
+      'elements.social-link': ElementsSocialLink;
       'elements.testimonial': ElementsTestimonial;
+      'layout.footer': LayoutFooter;
       'layout.header': LayoutHeader;
     }
   }

@@ -54,8 +54,8 @@ const CategorySection = () => {
                     <Image
                       src={`http://localhost:1337${category.icon.url}`}
                       alt={category.title}
-                      width={20}
-                      height={20}
+                      width={category.icon.width}
+                      height={category.icon.height}
                     />
                   </div>
                   <h3 className={categoryStyles.categoryTitle}>

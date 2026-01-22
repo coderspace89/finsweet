@@ -2,6 +2,7 @@ import { Sen } from "next/font/google";
 import "./globals.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from "./components/layout/Header";
+import Footer from "./components/layout/Footer";
 
 const sen = Sen({
   variable: "--font-sen",
@@ -20,6 +21,7 @@ export default function RootLayout({ children }) {
       <body className={`${sen.variable}`}>
         <Header />
         {children}
+        <Footer />
       </body>
     </html>
   );

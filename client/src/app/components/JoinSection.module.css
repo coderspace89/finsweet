@@ -1,0 +1,28 @@
+.joinSection {
+    padding-bottom: 128px;
+}
+
+.btnYellow {
+    background-color: #ffd050;
+    color: #232536;
+    border: none;
+    border-radius: 0;
+    padding: 16px 48px;
+    font-weight: 600;
+    text-decoration: none;
+    margin-top: 32px;
+    display: inline-block;
+}
+
+.title {
+    color: #232536;
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 16px;
+}
+
+.description {
+    color: #6D6E76;
+    font-size: 16px;
+    font-family: 400;
+}

@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_blocks_join_sections",
+  "info": {
+    "displayName": "Join Section"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "buttonText": {
+      "type": "string"
+    },
+    "buttonLink": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

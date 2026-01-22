@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_blocks_signup_blocks",
+  "info": {
+    "displayName": "Signup Block"
+  },
+  "options": {},
+  "attributes": {
+    "heading": {
+      "type": "text"
+    },
+    "emailPlaceholder": {
+      "type": "string"
+    },
+    "buttonText": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}
