@@ -1,8 +1,50 @@
 .footerSection {
-    padding-bottom: 128px;
-    background-color: #232536;
+  background-color: #232536;
 }
 
 .footerContainer {
-    padding: 50px 0px;
+  padding: 50px 0px;
+}
+
+.signupBg {
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 80px 64px;
+  margin-bottom: 48px;
+}
+
+.footerTop {
+  margin-bottom: 50px;
+}
+
+.formInput {
+  border-radius: 0;
+  border: 1px solid #6d6e76;
+  padding: 16px 24px;
+  color: #6d6e76 !important;
+}
+
+.formInput::placeholder {
+  color: #6d6e76;
+}
+
+.formButton {
+  padding: 16px 48px;
+  background-color: #ffd050;
+  border-radius: 0;
+  color: #232536;
+  font-weight: 700;
+  font-size: 18px;
+  border: 0;
+}
+
+.heading {
+  font-size: clamp(24px, 3vw, 36px);
+  font-weight: 700;
+  color: #fff;
+}
+
+@media (max-width: 600px) {
+  .signupBg {
+    padding: 24px;
+  }
 }

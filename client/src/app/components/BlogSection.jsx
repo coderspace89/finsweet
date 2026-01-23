@@ -28,7 +28,7 @@ const BlogSection = () => {
 
     // Fetch all posts
     fetch(
-      "http://localhost:1337/api/posts?_sort=date:desc&filters[featured][$eq]=false"
+      "http://localhost:1337/api/posts?_sort=date:desc&filters[featured][$eq]=false",
     )
       .then((response) => response.json())
       .then((data) => {
@@ -56,7 +56,7 @@ const BlogSection = () => {
             {featuredPost && (
               <div className={blogStyles.featuredPost}>
                 <Link
-                  href={`/blog/${featuredPost.id}`}
+                  href={`/blog/${featuredPost.slug}`}
                   className="text-decoration-none"
                 >
                   <img
@@ -92,7 +92,7 @@ const BlogSection = () => {
             {allPosts.map((post) => (
               <div key={post.id} className={blogStyles.postItem}>
                 <Link
-                  href={`/blog/${post.id}`}
+                  href={`/blog/${post.slug}`}
                   className="text-decoration-none"
                 >
                   <p className={blogStyles.meta}>
