@@ -1,0 +1,50 @@
+.sectionBg {
+    background-color: #F4F0F8;
+    padding-top: 128px;
+    padding-bottom: 80px;
+}
+
+.heroBtn {
+    background-color: #ffd050;
+    color: #232536;
+    border: none;
+    border-radius: 0;
+    padding: 16px 48px;
+    font-weight: 600;
+}
+
+.labelText {
+    color: #232536;
+    font-weight: 500;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.heading {
+    color: #232536;
+    font-weight: 700;
+    font-size: 36px;
+    margin-bottom: 16px;
+}
+
+.authorNdate {
+    color: #4C4C4C;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 16px;
+}
+
+.authorNdate span {
+    color: #592EA9;
+}
+
+.description {
+    color: #6D6E76;
+    font-weight: 400;
+    font-size: 16px;
+}
+
+.heroImage {
+    width: 100%;
+    height: 100%;
+}
