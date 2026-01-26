@@ -16,6 +16,25 @@ const BlogSection = () => {
     populate: ["image"],
   });
 
+  const postsPerPage = 4;
+  const currentPage = 1;
+  const queryObj = {
+    sort: ["date:asc"], 
+    filters: {
+      featured: {
+        $eq: false,
+      },
+    },
+    pagination: {
+      page: currentPage,
+      pageSize: postsPerPage,
+    },
+    populate: {
+      image: true,
+    },
+  };
+  const queryString = qs.stringify(queryObj, { encodeValuesOnly: true });
+
   useEffect(() => {
     // Fetch featured post
     fetch(`http://localhost:1337/api/posts?${query}`)
@@ -27,9 +46,7 @@ const BlogSection = () => {
       .catch((error) => console.error("Error fetching featured post:", error));
 
     // Fetch all posts
-    fetch(
-      "http://localhost:1337/api/posts?_sort=date:desc&filters[featured][$eq]=false",
-    )
+    fetch(`http://localhost:1337/api/posts?${queryString}`)
       .then((response) => response.json())
       .then((data) => {
         setAllPosts(data.data);

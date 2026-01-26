@@ -7,71 +7,103 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Image from "next/image";
+import Link from "next/link";
 
 const AllPosts = () => {
-    const [allPostsData, setAllPostsData] = useState([]);
+  const [allPostsData, setAllPostsData] = useState([]);
 
-    const queryObj = {
-        populate: {
-            posts: {
-                populate: {
-                    image: true,
-                },
-            },
-        },
+  const PAGE_SIZE = 5;
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const [pageCount, setPageCount] = useState(1);
+
+  const queryObj = {
+    populate: {
+      image: true,
+      category: true,
+    },
+    pagination: {
+      page: currentPage,
+      pageSize: PAGE_SIZE,
+    },
+    sort: ["publishedAt:desc"],
+  };
+  const queryString = qs.stringify(queryObj, { encodeValuesOnly: true });
+
+  useEffect(() => {
+    const fetchAllPosts = async () => {
+      const apiUrl = `http://localhost:1337/api/posts?${queryString}`;
+      const response = await fetch(apiUrl);
+      const data = await response.json();
+      console.log(data);
+      setAllPostsData(data?.data);
+      setCurrentPage(data?.meta?.pagination?.page);
+      setPageCount(data?.meta?.pagination?.pageCount);
     };
-    const queryString = qs.stringify(queryObj, { encodeValuesOnly: true });
+    fetchAllPosts();
+  }, [currentPage]);
 
-    useEffect(() => {
-        const fetchAllPosts = async () => {
-            const apiUrl = `http://localhost:1337/api/categories?${queryString}`;
-            const response = await fetch(apiUrl);
-            const data = await response.json();
-            console.log(data?.data);
-            setAllPostsData(data?.data);
-        };
-        fetchAllPosts();
-    }, []);
-
-    return (
-        <section>
-            <Container>
-                {allPostsData?.map((category) => (
-                    <Row key={category.id}>
-                        <Col lg={5}>
-                            {category.posts?.map((post) => {
-                                if (post.image && post.image.url) {
-                                    return (
-                                        <div key={post.id}>
-                                            <Image
-                                                src={`http://localhost:1337${post.image.url}`}
-                                                width={post.image.width || 490}
-                                                height={post.image.height || 318}
-                                                alt={post.image.name || post.title || 'Post Image'}
-                                                className="img-fluid"
-                                            />
-                                        </div>
-                                    );
-                                }
-                                return null;
-                            })}
-                        </Col>
-                        <Col lg={7}>
-                            <div>
-                                <p>{category.name}</p>
-                                {category.posts?.map((post) =>
-                                    <div key={post.id}>
-                                        <h2>{post.title}</h2>
-                                        <p>{post.content}</p>
-                                    </div>
-                                )}
-                            </div>
-                        </Col>
-                    </Row>
-                ))}
-            </Container>
-        </section>
-    );
+  return (
+    <section className={allpostsStyles.container}>
+      <Container>
+        <div className={allpostsStyles.headingContainer}>
+          <h2 className={allpostsStyles.heading}>All posts</h2>
+        </div>
+        {allPostsData?.map((post) => (
+          <Link
+            href={post?.slug}
+            key={post.id}
+            className="text-decoration-none"
+          >
+            <Row className={allpostsStyles.postsContainer}>
+              <Col lg={5}>
+                {post?.image && (
+                  <Image
+                    src={`http://localhost:1337${post?.image?.url}`}
+                    width={post?.image.width}
+                    height={post?.image?.height}
+                    alt={post?.image?.name}
+                    className="img-fluid mb-lg-0 mb-3"
+                  />
+                )}
+              </Col>
+              <Col lg={7}>
+                <div>
+                  <p className={allpostsStyles.categoryTitle}>
+                    {post?.category?.name}
+                  </p>
+                  <h2 className={allpostsStyles.postTitle}>{post?.title}</h2>
+                  <p className={allpostsStyles.postContent}>{post?.content}</p>
+                </div>
+              </Col>
+            </Row>
+          </Link>
+        ))}
+        <div className="text-center">
+          <Link
+            href="/blog"
+            onClick={() =>
+              setCurrentPage(currentPage > 1 ? currentPage - 1 : currentPage)
+            }
+            className={allpostsStyles.previousLink}
+          >
+            Previous
+          </Link>
+          <Link
+            href="/blog"
+            onClick={() =>
+              setCurrentPage(
+                currentPage < pageCount ? currentPage + 1 : currentPage,
+              )
+            }
+            className={allpostsStyles.nextLink}
+          >
+            Next
+          </Link>
+        </div>
+      </Container>
+    </section>
+  );
 };
 
 export default AllPosts;

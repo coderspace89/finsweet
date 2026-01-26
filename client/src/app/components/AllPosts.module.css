@@ -1,0 +1,67 @@
+.container {
+  padding: 64px 0;
+}
+
+.postsContainer {
+  padding-bottom: 64px;
+  display: flex;
+  align-items: center;
+}
+
+.headingContainer {
+  padding-bottom: 64px;
+}
+
+.heading {
+  border-bottom: 1px solid rgba(109, 110, 118, 0.4);
+  font-size: clamp(32px, 5vw, 48px);
+  color: #232536;
+  font-weight: 700;
+  padding-bottom: 32px;
+}
+
+.categoryTitle {
+  font-size: 16px;
+  color: #592ea9;
+  font-weight: 500;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.postTitle {
+  font-size: clamp(24px, 5vw, 36px);
+  color: #232536;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.postContent {
+  font-size: 16px;
+  color: #6d6e76;
+  font-weight: 400;
+}
+
+.previousLink {
+  font-size: clamp(16px, 5vw, 24px);
+  font-weight: 700;
+  color: #6d6e76;
+  text-decoration: none;
+  margin-right: 16px;
+}
+
+.previousLink::before {
+  content: "<";
+  padding-right: 5px;
+}
+
+.nextLink {
+  font-size: clamp(16px, 5vw, 24px);
+  font-weight: 700;
+  color: #232536;
+  text-decoration: none;
+}
+
+.nextLink::after {
+  content: ">";
+  padding-left: 5px;
+}
