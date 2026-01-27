@@ -51,7 +51,7 @@ const AllPosts = () => {
         </div>
         {allPostsData?.map((post) => (
           <Link
-            href={post?.slug}
+            href={`/blog/${post?.slug}`}
             key={post.id}
             className="text-decoration-none"
           >
