@@ -13,6 +13,21 @@ export interface BlocksAboutSection extends Struct.ComponentSchema {
   };
 }
 
+export interface BlocksArticleCard extends Struct.ComponentSchema {
+  collectionName: 'components_blocks_article_cards';
+  info: {
+    displayName: 'Article Card';
+  };
+  attributes: {
+    articleLink: Schema.Attribute.Relation<'oneToOne', 'api::article.article'>;
+    author: Schema.Attribute.Relation<'oneToOne', 'api::author.author'>;
+    date: Schema.Attribute.Date;
+    description: Schema.Attribute.Text;
+    image: Schema.Attribute.Media<'images'>;
+    title: Schema.Attribute.String;
+  };
+}
+
 export interface BlocksAuthorCard extends Struct.ComponentSchema {
   collectionName: 'components_blocks_author_cards';
   info: {
@@ -134,6 +149,19 @@ export interface BlocksMissionBlock extends Struct.ComponentSchema {
   };
 }
 
+export interface BlocksRelatedArticlesSection extends Struct.ComponentSchema {
+  collectionName: 'components_blocks_related_articles_sections';
+  info: {
+    displayName: 'RelatedArticlesSection';
+  };
+  attributes: {
+    RelatedArticlesSection: Schema.Attribute.Component<
+      'blocks.article-card',
+      true
+    >;
+  };
+}
+
 export interface BlocksSignupBlock extends Struct.ComponentSchema {
   collectionName: 'components_blocks_signup_blocks';
   info: {
@@ -249,6 +277,7 @@ declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
       'blocks.about-section': BlocksAboutSection;
+      'blocks.article-card': BlocksArticleCard;
       'blocks.author-card': BlocksAuthorCard;
       'blocks.authors-list': BlocksAuthorsList;
       'blocks.category-section': BlocksCategorySection;
@@ -257,6 +286,7 @@ declare module '@strapi/strapi' {
       'blocks.join-section': BlocksJoinSection;
       'blocks.logos-block': BlocksLogosBlock;
       'blocks.mission-block': BlocksMissionBlock;
+      'blocks.related-articles-section': BlocksRelatedArticlesSection;
       'blocks.signup-block': BlocksSignupBlock;
       'blocks.testimonials-section': BlocksTestimonialsSection;
       'elements.links': ElementsLinks;

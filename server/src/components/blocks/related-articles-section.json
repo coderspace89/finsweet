@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_blocks_related_articles_sections",
+  "info": {
+    "displayName": "RelatedArticlesSection"
+  },
+  "options": {},
+  "attributes": {
+    "RelatedArticlesSection": {
+      "type": "component",
+      "component": "blocks.article-card",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

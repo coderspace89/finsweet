@@ -40,6 +40,12 @@
     },
     "date": {
       "type": "date"
+    },
+    "RelatedContent": {
+      "type": "dynamiczone",
+      "components": [
+        "blocks.related-articles-section"
+      ]
     }
   }
 }

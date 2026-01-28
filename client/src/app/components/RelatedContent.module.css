@@ -1,0 +1,50 @@
+.relatedContentContainer {
+  padding-bottom: 64px;
+}
+
+.contentImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.imageContainer {
+  height: 318px;
+  margin-bottom: 32px;
+}
+
+.contentTitle {
+  color: #232536;
+  font-weight: 700;
+  font-size: clamp(20px, 5vw, 28px);
+  margin-bottom: 16px;
+}
+
+.contentDescription {
+  color: rgba(35, 37, 54, 0.7);
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.authorDate {
+  color: #4c4c4c;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+
+.authorDate span {
+  color: #592ea9;
+}
+
+.sectionTitle {
+  margin-bottom: 64px;
+  font-size: clamp(28px, 5vw, 36px);
+  color: #232536;
+  font-weight: 700;
+}
+
+.sectionRow {
+  border-bottom: 1px solid rgba(109, 110, 118, 0.3);
+  padding-bottom: 64px;
+}
