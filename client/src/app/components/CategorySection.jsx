@@ -24,7 +24,7 @@ const CategorySection = () => {
     const fetchCategories = async () => {
       try {
         const response = await fetch(
-          `http://localhost:1337/api/home-page?${query}`
+          `http://localhost:1337/api/home-page?${query}`,
         );
         const data = await response.json();
         console.log(data);
@@ -47,7 +47,7 @@ const CategorySection = () => {
             <Col lg={3} key={index} className="mb-3 mb-lg-0">
               <div className={categoryStyles.categoryBox}>
                 <Link
-                  href={`/category/${category.title.toLowerCase()}`}
+                  href={`blog/category/${category.title.toLowerCase()}`}
                   className={categoryStyles.categoryLink}
                 >
                   <div className={categoryStyles.iconBg}>

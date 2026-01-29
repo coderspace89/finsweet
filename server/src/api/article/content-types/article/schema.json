@@ -46,6 +46,12 @@
       "components": [
         "blocks.related-articles-section"
       ]
+    },
+    "tags": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::tag.tag",
+      "inversedBy": "articles"
     }
   }
 }

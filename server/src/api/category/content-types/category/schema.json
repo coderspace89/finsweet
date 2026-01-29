@@ -30,6 +30,12 @@
       "allowedTypes": [
         "images"
       ]
+    },
+    "description": {
+      "type": "text"
+    },
+    "color": {
+      "type": "string"
     }
   }
 }
