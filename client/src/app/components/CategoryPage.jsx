@@ -8,6 +8,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 const CategoryPage = ({ slug }) => {
   const [articlesData, setArticlesData] = useState([]);
@@ -45,6 +46,42 @@ const CategoryPage = ({ slug }) => {
     fetchArticles();
   }, []);
 
+  const router = useRouter();
+  const currentPath = router.asPath || "/blog";
+  const cleanedPath = currentPath.replace("category", "/");
+
+  const [categories, setCategories] = useState([]);
+
+  const queryCategory = qs.stringify({
+    populate: {
+      image: true,
+    },
+  });
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await fetch(
+          `http://localhost:1337/api/categories?${queryCategory}`,
+        );
+        const data = await response.json();
+        console.log(data.data);
+        setCategories(data.data || []);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchCategories();
+  }, []);
+
+  const [selectedCategoryId, setSelectedCategoryId] = useState(null);
+  const [selectedCategoryBgColor, setSelectedCategoryBgColor] = useState("");
+
+  const handleCategoryClick = (categoryId, categoryColor) => {
+    setSelectedCategoryId(categoryId);
+    setSelectedCategoryBgColor(categoryColor);
+  };
+
   return (
     <section className={categoryPageStyles.container}>
       <Container fluid>
@@ -67,26 +104,91 @@ const CategoryPage = ({ slug }) => {
           </Col>
         </Row>
       </Container>
-      <Container>
+      <Container className={categoryPageStyles.articleContainer}>
         <Row>
-          {articlesData?.map((article) => (
-            <Col lg={8} key={article.id}>
-              <div className="d-flex">
-                {article?.image && (
-                  <Image
-                    src={`http://localhost:1337${article?.image?.url}`}
-                    width={article?.image?.width}
-                    height={article?.image?.height}
-                    alt={article?.image?.name}
-                    className="img-fluid"
-                  />
-                )}
-                <div>
-                  <p>{article?.category?.name}</p>
+          <Col lg={9}>
+            {articlesData?.map((article) => (
+              <Link
+                href={`${cleanedPath}/${article?.slug}`}
+                className="text-decoration-none"
+                key={article.id}
+              >
+                <Row className="align-items-center">
+                  <Col lg={5}>
+                    {article?.image && (
+                      <div className={categoryPageStyles.imageContainer}>
+                        <Image
+                          src={`http://localhost:1337${article?.image?.url}`}
+                          width={article?.image?.width}
+                          height={article?.image?.height}
+                          alt={article?.image?.name}
+                          className={categoryPageStyles.articleImage}
+                        />
+                      </div>
+                    )}
+                  </Col>
+                  <Col lg={7}>
+                    <div>
+                      <p className={categoryPageStyles.categoryTitle}>
+                        {article?.category?.name}
+                      </p>
+                      <h3 className={categoryPageStyles.articleTitle}>
+                        {article?.title}
+                      </h3>
+                      <p className={categoryPageStyles.articleText}>
+                        {article?.author?.bio}
+                      </p>
+                    </div>
+                  </Col>
+                </Row>
+              </Link>
+            ))}
+          </Col>
+          <Col lg={3}>
+            <div>
+              <h2 className={categoryPageStyles.categoryHeading}>Categories</h2>
+            </div>
+            {categories?.map((category) => (
+              <Link
+                target="_blank"
+                href={category?.slug}
+                key={category.id}
+                className="text-decoration-none"
+              >
+                <div
+                  className={categoryPageStyles.categoryItemsContainer}
+                  onClick={() =>
+                    handleCategoryClick(category.id, category?.color)
+                  }
+                  style={
+                    category.id === selectedCategoryId
+                      ? {
+                          backgroundColor: selectedCategoryBgColor,
+                          border: "1px solid #FFD050",
+                        }
+                      : { backgroundColor: "" }
+                  }
+                >
+                  <div className="d-flex align-items-center justify-content-start">
+                    {category?.image && (
+                      <div className={categoryPageStyles.categoryIconBg}>
+                        <Image
+                          src={`http://localhost:1337${category?.image?.url}`}
+                          width={category?.image?.width}
+                          height={category?.image?.height}
+                          alt={category?.image?.name}
+                          className={categoryPageStyles.categoryIcon}
+                        />
+                      </div>
+                    )}
+                    <h2 className={categoryPageStyles.categoryItemsName}>
+                      {category.name}
+                    </h2>
+                  </div>
                 </div>
-              </div>
-            </Col>
-          ))}
+              </Link>
+            ))}
+          </Col>
         </Row>
       </Container>
     </section>
