@@ -82,6 +82,34 @@ const CategoryPage = ({ slug }) => {
     setSelectedCategoryBgColor(categoryColor);
   };
 
+  const [tagsData, setTagsData] = useState([]);
+
+  const queryTag = qs.stringify({
+    populate: {
+      articles: {
+        populate: {
+          image: true,
+        },
+      },
+    },
+  });
+
+  useEffect(() => {
+    const fetchTags = async () => {
+      try {
+        const response = await fetch(
+          `http://localhost:1337/api/tags?${queryTag}`,
+        );
+        const data = await response.json();
+        console.log(data.data);
+        setTagsData(data.data || []);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchTags();
+  }, []);
+
   return (
     <section className={categoryPageStyles.container}>
       <Container fluid>
@@ -188,6 +216,23 @@ const CategoryPage = ({ slug }) => {
                 </div>
               </Link>
             ))}
+            <div>
+              <h2 className={categoryPageStyles.tagHeading}>All Tags</h2>
+            </div>
+            <div className={categoryPageStyles.tagContainer}>
+              {tagsData.map((tag) => (
+                <Link
+                  href={`tag/${tag.slug}`}
+                  target="_blank"
+                  className="text-decoration-none"
+                  key={tag.id}
+                >
+                  <div className={categoryPageStyles.tagItem}>
+                    <span>{tag.name}</span>
+                  </div>
+                </Link>
+              ))}
+            </div>
           </Col>
         </Row>
       </Container>

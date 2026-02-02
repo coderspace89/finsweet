@@ -105,3 +105,30 @@
   color: #232536;
   margin-bottom: 40px;
 }
+
+.tagHeading {
+  font-size: clamp(28px, 5vw, 36px);
+  font-weight: 700;
+  color: #232536;
+  margin-bottom: 24px;
+}
+
+.tagContainer {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.tagItem {
+  border: 1px solid #6D6E76;
+  width: fit-content;
+  color: #232536;
+  font-size: 14px;
+  text-align: center;
+  padding: 8px 38px;
+  border-radius: 40px;
+}
+
+.tagItem span {
+  color: #232536;
+}

@@ -1,0 +1,28 @@
+.tagPageContainer {
+    padding: 128px 0;
+}
+
+.articleImage {
+    width: 100%;
+    height: 100%;
+}
+
+.articleImageContainer {
+    margin-bottom: 32px;
+}
+
+.tagTitle {
+    color: #592ea9;
+    font-weight: 500;
+    font-size: 16px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.articleTitle {
+    color: #232536;
+    font-size: clamp(28px, 5vw, 36px);
+    font-weight: 700;
+    margin-bottom: 16px;
+}
