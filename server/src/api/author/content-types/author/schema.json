@@ -23,6 +23,18 @@
     },
     "bio": {
       "type": "text"
+    },
+    "socialLinks": {
+      "type": "component",
+      "component": "elements.social-link",
+      "repeatable": true
+    },
+    "title": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name"
     }
   }
 }

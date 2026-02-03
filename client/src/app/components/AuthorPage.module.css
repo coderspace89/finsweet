@@ -1,0 +1,75 @@
+.authorHeroContainer {
+  padding: 128px 0;
+  background-color: #f4f0f8;
+  position: relative;
+}
+
+.authorImage {
+  width: 100%;
+  height: 100%;
+}
+
+.iconImage {
+  margin-right: 16px;
+  filter: invert(16%) sepia(13%) saturate(1107%) hue-rotate(196deg)
+    brightness(93%) contrast(100%);
+}
+
+.authorTitle {
+  font-size: clamp(32px, 5vw, 48px);
+  font-weight: 700;
+  color: #232536;
+  margin-bottom: 24px;
+}
+
+.authorBio {
+  color: #6d6e76;
+  font-size: 16px;
+  font-weight: 400;
+  margin-bottom: 24px;
+}
+
+.authorPostsContainer {
+  padding: 128px 0;
+}
+
+.articleImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.articleImageContainer {
+  margin-bottom: 64px;
+  height: 300px;
+}
+
+.categoryTitle {
+  color: #592ea9;
+  font-weight: 500;
+  font-size: 16px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.articleTitle {
+  color: #232536;
+  font-size: clamp(28px, 5vw, 36px);
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.articleText {
+  color: #6d6e76;
+  font-size: 16px;
+  font-weight: 400;
+  margin-bottom: 38px;
+}
+
+.authorPostsHeading {
+  font-size: clamp(32px, 5vw, 48px);
+  font-weight: 700;
+  color: #232536;
+  margin-bottom: 64px;
+}

@@ -8,6 +8,8 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Image from "next/image";
 import ReactMarkdown from "react-markdown";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const Article = ({ slug }) => {
   const postSlug = slug;
@@ -53,6 +55,10 @@ const Article = ({ slug }) => {
     });
   }
 
+  const router = useRouter();
+  const currentPath = router.asPath || "/";
+  const cleanedPath = currentPath.replace("blog", "/");
+
   return (
     <section className={articleStyles.articleContainer}>
       <Container>
@@ -60,32 +66,37 @@ const Article = ({ slug }) => {
           <Col lg={8}>
             {articleData.map((article) => (
               <div key={article.id}>
-                <div
-                  className={`${articleStyles.authorContainer} d-flex align-items-center`}
+                <Link
+                  href={`${cleanedPath}author/${article?.author?.slug}`}
+                  className="text-decoration-none"
                 >
-                  {article.author?.image && (
-                    <Image
-                      key={article.author.id}
-                      src={`http://localhost:1337${article.author.image.url}`}
-                      width={article.author.image.width}
-                      height={article.author.image.height}
-                      alt={
-                        article.author.image.name ||
-                        article.author.title ||
-                        "Post Image"
-                      }
-                      className={articleStyles.authorImage}
-                    />
-                  )}
-                  <div>
-                    <h3 className={articleStyles.authorName}>
-                      {article?.author?.name}
-                    </h3>
-                    <span className={articleStyles.articleDate}>
-                      Posted on {formatDate(article.date)}
-                    </span>
+                  <div
+                    className={`${articleStyles.authorContainer} d-flex align-items-center`}
+                  >
+                    {article.author?.image && (
+                      <Image
+                        key={article.author.id}
+                        src={`http://localhost:1337${article.author.image.url}`}
+                        width={article.author.image.width}
+                        height={article.author.image.height}
+                        alt={
+                          article.author.image.name ||
+                          article.author.title ||
+                          "Post Image"
+                        }
+                        className={articleStyles.authorImage}
+                      />
+                    )}
+                    <div>
+                      <h3 className={articleStyles.authorName}>
+                        {article?.author?.name}
+                      </h3>
+                      <span className={articleStyles.articleDate}>
+                        Posted on {formatDate(article.date)}
+                      </span>
+                    </div>
                   </div>
-                </div>
+                </Link>
                 <div>
                   <h2 className={articleStyles.articleTitle}>
                     {article?.title}
@@ -102,7 +113,7 @@ const Article = ({ slug }) => {
                           article.category.title ||
                           "Post Image"
                         }
-                        className={articleStyles.authorImage}
+                        className={articleStyles.categoryImage}
                       />
                     )}
                     <h4 className={articleStyles.categoryName}>

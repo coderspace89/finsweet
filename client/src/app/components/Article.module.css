@@ -4,6 +4,14 @@
 
 .authorImage {
   margin-right: 16px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.categoryImage {
+  margin-right: 16px;
 }
 
 .authorContainer {

@@ -34,7 +34,7 @@ export interface BlocksAuthorCard extends Struct.ComponentSchema {
     displayName: 'Author Card';
   };
   attributes: {
-    image: Schema.Attribute.Media<'images', true>;
+    image: Schema.Attribute.Media<'images'>;
     name: Schema.Attribute.String;
     role: Schema.Attribute.String;
     socialLinks: Schema.Attribute.JSON &

@@ -45,8 +45,8 @@ const AuthorsList = () => {
 
   if (!authors) return <div>Loading...</div>;
 
-  const imageUrls = authors.map(
-    (author) => `http://localhost:1337${author.image[0].url}`,
+  const imageUrls = authors?.map(
+    (author) => `http://localhost:1337${author?.image?.url}`,
   );
 
   return (

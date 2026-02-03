@@ -13,8 +13,10 @@
     },
     "image": {
       "type": "media",
-      "multiple": true,
-      "allowedTypes": ["images"]
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
     },
     "socialLinks": {
       "type": "json",
