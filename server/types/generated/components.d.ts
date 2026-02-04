@@ -174,6 +174,17 @@ export interface BlocksSignupBlock extends Struct.ComponentSchema {
   };
 }
 
+export interface BlocksStatItem extends Struct.ComponentSchema {
+  collectionName: 'components_blocks_stat_items';
+  info: {
+    displayName: 'StatItem';
+  };
+  attributes: {
+    label: Schema.Attribute.String;
+    value: Schema.Attribute.String;
+  };
+}
+
 export interface BlocksTestimonialsSection extends Struct.ComponentSchema {
   collectionName: 'components_blocks_testimonials_sections';
   info: {
@@ -288,6 +299,7 @@ declare module '@strapi/strapi' {
       'blocks.mission-block': BlocksMissionBlock;
       'blocks.related-articles-section': BlocksRelatedArticlesSection;
       'blocks.signup-block': BlocksSignupBlock;
+      'blocks.stat-item': BlocksStatItem;
       'blocks.testimonials-section': BlocksTestimonialsSection;
       'elements.links': ElementsLinks;
       'elements.logo': ElementsLogo;

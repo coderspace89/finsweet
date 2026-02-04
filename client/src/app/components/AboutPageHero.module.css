@@ -1,0 +1,94 @@
+.container {
+  padding: 128px 0;
+}
+
+.heroTitle {
+  letter-spacing: 3px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #232536;
+  margin-bottom: 16px;
+}
+
+.heading {
+  font-size: clamp(32px, 5vw, 48px);
+  font-weight: 700;
+  color: #232536;
+}
+
+.description {
+  color: #4c4c4c;
+  font-weight: 400;
+  font-size: 16px;
+}
+
+.statsbg {
+  background-color: #ffd050;
+  padding: 32px 48px;
+  position: absolute;
+  left: 10%;
+  bottom: 2%;
+}
+
+.svgLine {
+  position: absolute;
+  left: 7.8%;
+  bottom: 0;
+  width: 75%;
+}
+
+.statsValue {
+  font-size: clamp(32px, 5vw, 56px);
+  font-weight: 700;
+  color: #232536;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.statsLabel {
+  font-size: 16px;
+  color: #232536;
+  font-weight: 400;
+}
+
+.missionVisionContainer {
+  padding: 128px 100px 64px 100px;
+  background-color: #f4f0f8;
+}
+
+.missionBlockTitle {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #232536;
+  margin-bottom: 24px;
+}
+
+.missionTitle {
+  font-size: clamp(20px, 5vw, 28px);
+  color: #232536;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.missionDescription {
+  color: #6d6e76;
+  font-weight: 400;
+  font-size: 16px;
+}
+
+@media (max-width: 600px) {
+  .missionVisionContainer {
+    padding: 25px;
+  }
+  .statsbg,
+  .svgLine {
+    position: unset;
+    bottom: unset;
+    left: unset;
+  }
+  .svgLine {
+    display: none;
+  }
+}
