@@ -82,6 +82,18 @@ export interface BlocksCategorySection extends Struct.ComponentSchema {
   };
 }
 
+export interface BlocksContactInfoBlock extends Struct.ComponentSchema {
+  collectionName: 'components_blocks_contact_info_blocks';
+  info: {
+    displayName: 'ContactInfoBlock';
+  };
+  attributes: {
+    blockTitle: Schema.Attribute.String;
+    mainContent: Schema.Attribute.Text;
+    subContent: Schema.Attribute.String;
+  };
+}
+
 export interface BlocksDiscoverSection extends Struct.ComponentSchema {
   collectionName: 'components_blocks_discover_sections';
   info: {
@@ -149,6 +161,17 @@ export interface BlocksMissionBlock extends Struct.ComponentSchema {
   };
 }
 
+export interface BlocksQueryOption extends Struct.ComponentSchema {
+  collectionName: 'components_blocks_query_options';
+  info: {
+    displayName: 'QueryOption';
+  };
+  attributes: {
+    label: Schema.Attribute.String;
+    value: Schema.Attribute.String;
+  };
+}
+
 export interface BlocksRelatedArticlesSection extends Struct.ComponentSchema {
   collectionName: 'components_blocks_related_articles_sections';
   info: {
@@ -185,6 +208,19 @@ export interface BlocksStatItem extends Struct.ComponentSchema {
   };
 }
 
+export interface BlocksTeamCreativeSection extends Struct.ComponentSchema {
+  collectionName: 'components_blocks_team_creative_sections';
+  info: {
+    displayName: 'TeamCreativeSection';
+  };
+  attributes: {
+    description: Schema.Attribute.Text;
+    heading: Schema.Attribute.String;
+    image: Schema.Attribute.Media<'images'>;
+    subheading: Schema.Attribute.Text;
+  };
+}
+
 export interface BlocksTestimonialsSection extends Struct.ComponentSchema {
   collectionName: 'components_blocks_testimonials_sections';
   info: {
@@ -195,6 +231,19 @@ export interface BlocksTestimonialsSection extends Struct.ComponentSchema {
     description: Schema.Attribute.Text;
     Testimonials: Schema.Attribute.Component<'elements.testimonial', true>;
     title: Schema.Attribute.String;
+  };
+}
+
+export interface BlocksWhyStartedBlogSection extends Struct.ComponentSchema {
+  collectionName: 'components_blocks_why_started_blog_sections';
+  info: {
+    displayName: 'WhyStartedBlogSection';
+  };
+  attributes: {
+    description: Schema.Attribute.Text;
+    heading: Schema.Attribute.String;
+    image: Schema.Attribute.Media<'images'>;
+    subheading: Schema.Attribute.Text;
   };
 }
 
@@ -292,15 +341,19 @@ declare module '@strapi/strapi' {
       'blocks.author-card': BlocksAuthorCard;
       'blocks.authors-list': BlocksAuthorsList;
       'blocks.category-section': BlocksCategorySection;
+      'blocks.contact-info-block': BlocksContactInfoBlock;
       'blocks.discover-section': BlocksDiscoverSection;
       'blocks.hero-section': BlocksHeroSection;
       'blocks.join-section': BlocksJoinSection;
       'blocks.logos-block': BlocksLogosBlock;
       'blocks.mission-block': BlocksMissionBlock;
+      'blocks.query-option': BlocksQueryOption;
       'blocks.related-articles-section': BlocksRelatedArticlesSection;
       'blocks.signup-block': BlocksSignupBlock;
       'blocks.stat-item': BlocksStatItem;
+      'blocks.team-creative-section': BlocksTeamCreativeSection;
       'blocks.testimonials-section': BlocksTestimonialsSection;
+      'blocks.why-started-blog-section': BlocksWhyStartedBlogSection;
       'elements.links': ElementsLinks;
       'elements.logo': ElementsLogo;
       'elements.logo-image': ElementsLogoImage;

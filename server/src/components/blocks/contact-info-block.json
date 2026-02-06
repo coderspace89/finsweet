@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_blocks_contact_info_blocks",
+  "info": {
+    "displayName": "ContactInfoBlock"
+  },
+  "options": {},
+  "attributes": {
+    "blockTitle": {
+      "type": "string"
+    },
+    "mainContent": {
+      "type": "text"
+    },
+    "subContent": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

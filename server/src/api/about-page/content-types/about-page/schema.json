@@ -36,6 +36,21 @@
       "type": "component",
       "component": "blocks.mission-block",
       "repeatable": true
+    },
+    "teamCreativeBlock": {
+      "type": "component",
+      "component": "blocks.team-creative-section",
+      "repeatable": false
+    },
+    "whyStartedBlogBlock": {
+      "type": "component",
+      "component": "blocks.why-started-blog-section",
+      "repeatable": false
+    },
+    "AuthorsList": {
+      "type": "component",
+      "component": "blocks.authors-list",
+      "repeatable": false
     }
   }
 }
