@@ -40,6 +40,58 @@ const ContactPage = () => {
     fetchBlocksData();
   }, []);
 
+  // saving contact form submissions
+  const [formData, setFormData] = useState({
+    fullName: "",
+    email: "",
+    queryRelated: "", // Set default from first option if available
+    message: "",
+  });
+  const [status, setStatus] = useState(null); // 'success', 'error', 'submitting'
+  const [responseMessage, setResponseMessage] = useState("");
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setStatus("submitting");
+    setResponseMessage("");
+    try {
+      const response = await fetch("/api/contact", {
+        // The API route we created
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+      const data = await response.json();
+      if (response.ok) {
+        setStatus("success");
+        setResponseMessage(data.message || "Thank you for your submission!");
+        setFormData({
+          // Clear form on success
+          fullName: "",
+          email: "",
+          queryRelated: contactData?.queryOptions[0]?.value || "",
+          message: "",
+        });
+      } else {
+        setStatus("error");
+        setResponseMessage(
+          data.message || "Something went wrong. Please try again.",
+        );
+      }
+    } catch (error) {
+      console.error("Frontend submission error:", error);
+      setStatus("error");
+      setResponseMessage("Network error. Please check your connection.");
+    }
+  };
+
+  console.log(formData);
+
   return (
     <section className={contactPageStyles.container}>
       <Container>
@@ -74,34 +126,40 @@ const ContactPage = () => {
               ))}
             </Row>
             <div>
-              <Form>
-                <Form.Group
-                  className="mb-3"
-                  controlId="exampleForm.ControlInput1"
-                >
+              <Form onSubmit={handleSubmit}>
+                <Form.Group className="mb-3">
                   <Form.Control
                     type="text"
                     placeholder="Full Name"
                     className={contactPageStyles.formInput}
+                    id="fullName"
+                    name="fullName"
+                    value={formData.fullName}
+                    onChange={handleChange}
+                    required
                   />
                 </Form.Group>
-                <Form.Group
-                  className="mb-3"
-                  controlId="exampleForm.ControlInput1"
-                >
+                <Form.Group className="mb-3">
                   <Form.Control
                     type="email"
                     placeholder="Your Email"
                     className={contactPageStyles.formInput}
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
                   />
                 </Form.Group>
-                <Form.Group
-                  className="mb-3"
-                  controlId="exampleForm.ControlInput1"
-                >
+                <Form.Group className="mb-3">
                   <Form.Select
                     aria-label="Default select example"
                     className={contactPageStyles.formInput}
+                    id="queryRelated"
+                    name="queryRelated"
+                    value={formData.queryRelated}
+                    onChange={handleChange}
+                    required
                   >
                     {contactData?.queryOptions?.map((queryOption) => (
                       <option key={queryOption.id} value={queryOption.value}>
@@ -110,24 +168,38 @@ const ContactPage = () => {
                     ))}
                   </Form.Select>
                 </Form.Group>
-                <Form.Group
-                  className="mb-3"
-                  controlId="exampleForm.ControlTextarea1"
-                >
+                <Form.Group className="mb-3">
                   <Form.Control
                     as="textarea"
                     rows={3}
                     placeholder="Message"
                     className={contactPageStyles.formInput}
+                    id="message"
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
+                    required
                   />
                 </Form.Group>
                 <Button
                   variant="warning"
                   type="submit"
                   className={contactPageStyles.submitBtn}
+                  disabled={status === "submitting"}
                 >
-                  {contactData?.submitButtonText}
+                  {status === "submitting"
+                    ? "Submitting..."
+                    : contactData?.submitButtonText || "Send Message"}
                 </Button>
+                {status && responseMessage && (
+                  <p
+                    className={
+                      status === "success" ? "text-success" : "text-danger"
+                    }
+                  >
+                    {responseMessage}
+                  </p>
+                )}
               </Form>
             </div>
           </Col>

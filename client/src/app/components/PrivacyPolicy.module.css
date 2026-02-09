@@ -1,0 +1,41 @@
+.container {
+  padding: 128px 0;
+  background-color: #f4f0f8;
+}
+
+.title {
+  font-size: clamp(32px, 5vw, 48px);
+  color: #232536;
+  font-weight: 700;
+}
+
+.updateText {
+  color: #232536;
+  font-weight: 400;
+  font-size: 16px;
+}
+
+.policyContainer {
+  padding: 128px 0;
+}
+
+.markdownContainer h1 {
+  font-size: clamp(32px, 5vw, 48px);
+  color: #232536;
+  font-weight: 700;
+  margin-bottom: 32px;
+}
+
+.markdownContainer h2 {
+  font-size: clamp(28px, 5vw, 36px);
+  color: #232536;
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+
+.markdownContainer p {
+  font-size: 16px;
+  color: #6d6e76;
+  font-weight: 400;
+  margin-bottom: 32px;
+}
