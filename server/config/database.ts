@@ -31,7 +31,7 @@ export default ({ env }) => {
     postgres: {
       connection: {
         connectionString: env("DATABASE_URL"),
-        // Simplified SSL for Strapi Cloud
+        // Strapi Cloud managed DBs REQUIRE SSL
         ssl: env.bool("DATABASE_SSL", true) && {
           rejectUnauthorized: env.bool(
             "DATABASE_SSL_REJECT_UNAUTHORIZED",
