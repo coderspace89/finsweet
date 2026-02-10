@@ -9,6 +9,7 @@ import Col from "react-bootstrap/Col";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { getStrapiMedia } from "@/lib/utils";
 
 const TagPage = ({ slug }) => {
   const tagSlug = slug;
@@ -33,9 +34,7 @@ const TagPage = ({ slug }) => {
   useEffect(() => {
     const fetchTags = async () => {
       try {
-        const response = await fetch(
-          `${process.env.STRAPI_CLOUD_URL || process.env.STRAPI_LOCAL_URL}/api/tags?${queryTag}`,
-        );
+        const response = await fetch(`/api/tags?${queryTag}`);
         const data = await response.json();
         console.log(data.data);
         setTagsData(data.data || []);
@@ -64,7 +63,7 @@ const TagPage = ({ slug }) => {
                 <div className={tagPageStyles.articleImageContainer}>
                   {article?.image && (
                     <Image
-                      src={`${process.env.STRAPI_CLOUD_URL || process.env.STRAPI_LOCAL_URL}${article?.image?.url}`}
+                      src={getStrapiMedia(article?.image?.url)}
                       width={article?.image?.width}
                       height={article?.image?.height}
                       alt={article?.image?.name}

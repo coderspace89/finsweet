@@ -10,6 +10,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import { getStrapiMedia } from "@/lib/utils";
 
 const Footer = () => {
   const [footerData, setFooterData] = useState({});
@@ -32,7 +33,7 @@ const Footer = () => {
   const queryString = qs.stringify(queryObj, { encodeValuesOnly: true });
 
   async function FooterSection() {
-    const apiUrl = `${process.env.STRAPI_CLOUD_URL || process.env.STRAPI_LOCAL_URL}/api/global?${queryString}`;
+    const apiUrl = `/api/global?${queryString}`;
     const response = await fetch(apiUrl);
     const data = await response.json();
     console.log(data?.data?.Footer);
@@ -116,7 +117,7 @@ const Footer = () => {
                 {footerData?.SocialLinks?.map((item, index) => (
                   <Link key={index} href={item.url}>
                     <Image
-                      src={`${process.env.STRAPI_CLOUD_URL || process.env.STRAPI_LOCAL_URL}${item.icon.url}`}
+                      src={getStrapiMedia(item.icon.url)}
                       width={item.icon.width}
                       height={item.icon.height}
                       alt={item.icon.name}

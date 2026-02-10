@@ -8,6 +8,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Image from "next/image";
 import Link from "next/link";
+import { getStrapiMedia } from "@/lib/utils";
 
 const AllPosts = () => {
   const [allPostsData, setAllPostsData] = useState([]);
@@ -32,7 +33,7 @@ const AllPosts = () => {
 
   useEffect(() => {
     const fetchAllPosts = async () => {
-      const apiUrl = `${process.env.STRAPI_CLOUD_URL || process.env.STRAPI_LOCAL_URL}/api/posts?${queryString}`;
+      const apiUrl = `/api/posts?${queryString}`;
       const response = await fetch(apiUrl);
       const data = await response.json();
       console.log(data);
@@ -59,7 +60,7 @@ const AllPosts = () => {
               <Col lg={5}>
                 {post?.image && (
                   <Image
-                    src={`${process.env.STRAPI_CLOUD_URL || process.env.STRAPI_LOCAL_URL}${post?.image?.url}`}
+                    src={getStrapiMedia(post?.image?.url)}
                     width={post?.image.width}
                     height={post?.image?.height}
                     alt={post?.image?.name}

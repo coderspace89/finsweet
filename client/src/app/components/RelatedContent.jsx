@@ -8,6 +8,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Image from "next/image";
 import Link from "next/link";
+import { getStrapiMedia } from "@/lib/utils";
 
 const RelatedContent = ({ slug }) => {
   const postSlug = slug;
@@ -50,7 +51,7 @@ const RelatedContent = ({ slug }) => {
 
   useEffect(() => {
     const fetchRelatedContent = async () => {
-      const apiUrl = `${process.env.STRAPI_CLOUD_URL || process.env.STRAPI_LOCAL_URL}/api/articles?${queryString}`;
+      const apiUrl = `/api/articles?${queryString}`;
       const response = await fetch(apiUrl);
       const data = await response.json();
       console.log(data?.data[0].RelatedContent[0].RelatedArticlesSection);
@@ -87,7 +88,7 @@ const RelatedContent = ({ slug }) => {
                   {content?.image && (
                     <div className={relatedContentStyles.imageContainer}>
                       <Image
-                        src={`${process.env.STRAPI_CLOUD_URL || process.env.STRAPI_LOCAL_URL}${content?.image?.url}`}
+                        src={getStrapiMedia(content?.image?.url)}
                         width={content?.image?.width}
                         height={content?.image?.height}
                         alt={content?.image?.name}

@@ -10,6 +10,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Image from "next/image";
+import { getStrapiMedia } from "@/lib/utils";
 
 const Testimonials = () => {
   const [testimonials, setTestimonials] = useState([]);
@@ -29,9 +30,7 @@ const Testimonials = () => {
   useEffect(() => {
     const fetchTestimonials = async () => {
       try {
-        const response = await fetch(
-          `${process.env.STRAPI_CLOUD_URL || process.env.STRAPI_LOCAL_URL}/api/home-page?${query}`,
-        );
+        const response = await fetch(`/api/home-page?${query}`);
         const data = await response.json();
         console.log(data.data.Testimonials);
         setTestimonials(data.data.Testimonials);
@@ -90,7 +89,7 @@ const Testimonials = () => {
                     <div className={testimonialStyles.authorContainer}>
                       <div className="d-flex align-items-center gap-3">
                         <Image
-                          src={`${process.env.STRAPI_CLOUD_URL || process.env.STRAPI_LOCAL_URL}${testimonial.image?.url}`}
+                          src={getStrapiMedia(testimonial.image?.url)}
                           alt={testimonial.authorName}
                           width={testimonial.image?.width}
                           height={testimonial.image?.height}

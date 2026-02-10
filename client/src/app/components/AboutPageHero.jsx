@@ -6,6 +6,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import qs from "qs";
+import { getStrapiMedia } from "@/lib/utils";
 
 const AboutPageHero = () => {
   const [aboutHeroData, setAboutHeroData] = useState(null);
@@ -29,7 +30,7 @@ const AboutPageHero = () => {
 
   useEffect(() => {
     const fetchAboutHero = async () => {
-      const apiUrl = `${process.env.STRAPI_CLOUD_URL || process.env.STRAPI_LOCAL_URL}/api/about-page?${queryString}`;
+      const apiUrl = `/api/about-page?${queryString}`;
       const response = await fetch(apiUrl);
       const data = await response.json();
       console.log(data?.data);
@@ -38,9 +39,7 @@ const AboutPageHero = () => {
     fetchAboutHero();
   }, []);
 
-  const heroImageUrl = aboutHeroData?.image?.url
-    ? `${process.env.STRAPI_CLOUD_URL || process.env.STRAPI_LOCAL_URL}${aboutHeroData?.image?.url}`
-    : null;
+  const heroImageUrl = getStrapiMedia(aboutHeroData?.image?.url);
 
   return (
     <section className={aboutPageHeroStyles.container}>

@@ -10,6 +10,7 @@ import Image from "next/image";
 import ReactMarkdown from "react-markdown";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { getStrapiMedia } from "@/lib/utils";
 
 const Article = ({ slug }) => {
   const postSlug = slug;
@@ -37,7 +38,7 @@ const Article = ({ slug }) => {
 
   useEffect(() => {
     const fetchArticle = async () => {
-      const apiUrl = `${process.env.STRAPI_CLOUD_URL || process.env.STRAPI_LOCAL_URL}/api/articles?${queryString}`;
+      const apiUrl = `/api/articles?${queryString}`;
       const response = await fetch(apiUrl);
       const data = await response.json();
       console.log(data?.data);
@@ -76,7 +77,7 @@ const Article = ({ slug }) => {
                     {article.author?.image && (
                       <Image
                         key={article.author.id}
-                        src={`${process.env.STRAPI_CLOUD_URL || process.env.STRAPI_LOCAL_URL}${article.author.image.url}`}
+                        src={getStrapiMedia(article.author.image.url)}
                         width={article.author.image.width}
                         height={article.author.image.height}
                         alt={
@@ -105,7 +106,7 @@ const Article = ({ slug }) => {
                     {article.category?.image && (
                       <Image
                         key={article.category.id}
-                        src={`${process.env.STRAPI_CLOUD_URL || process.env.STRAPI_LOCAL_URL}${article.category.image.url}`}
+                        src={getStrapiMedia(article.category.image.url)}
                         width={article.category.image.width}
                         height={article.category.image.height}
                         alt={
@@ -133,7 +134,7 @@ const Article = ({ slug }) => {
                 {article?.image && (
                   <Image
                     key={article.author.id}
-                    src={`${process.env.STRAPI_CLOUD_URL || process.env.STRAPI_LOCAL_URL}${article.image.url}`}
+                    src={getStrapiMedia(article.image.url)}
                     width={article.image.width}
                     height={article.image.height}
                     alt={article.image.name || article.title || "Post Image"}

@@ -7,6 +7,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Image from "next/image";
+import { getStrapiMedia } from "@/lib/utils";
 
 const AboutPageBlocks = () => {
   const [blocksData, setBlocksData] = useState({});
@@ -30,7 +31,7 @@ const AboutPageBlocks = () => {
 
   useEffect(() => {
     const fetchBlocksData = async () => {
-      const apiUrl = `${process.env.STRAPI_CLOUD_URL || process.env.STRAPI_LOCAL_URL}/api/about-page?${queryString}`;
+      const apiUrl = `/api/about-page?${queryString}`;
       const response = await fetch(apiUrl);
       const data = await response.json();
       console.log(data?.data);
@@ -38,6 +39,13 @@ const AboutPageBlocks = () => {
     };
     fetchBlocksData();
   }, []);
+
+  const teamImageUrl = getStrapiMedia(
+    blocksData?.teamCreativeBlock?.image?.url,
+  );
+  const whyImageUrl = getStrapiMedia(
+    blocksData?.whyStartedBlogBlock?.image?.url,
+  );
 
   return (
     <section className={aboutPageBlocksStyles.container}>
@@ -60,7 +68,7 @@ const AboutPageBlocks = () => {
             <div>
               {blocksData?.teamCreativeBlock?.image && (
                 <Image
-                  src={`${process.env.STRAPI_CLOUD_URL || process.env.STRAPI_LOCAL_URL}${blocksData?.teamCreativeBlock?.image?.url}`}
+                  src={teamImageUrl}
                   width={blocksData?.teamCreativeBlock?.image?.width}
                   height={blocksData?.teamCreativeBlock?.image?.height}
                   alt={blocksData?.teamCreativeBlock?.image?.name}
@@ -75,9 +83,7 @@ const AboutPageBlocks = () => {
             <div>
               {blocksData?.whyStartedBlogBlock?.image && (
                 <Image
-                  src={`${process.env.STRAPI_CLOUD_URL || process.env.STRAPI_LOCAL_URL}${
-                    blocksData?.whyStartedBlogBlock?.image?.url
-                  }`}
+                  src={whyImageUrl}
                   width={blocksData?.whyStartedBlogBlock?.image?.width}
                   height={blocksData?.whyStartedBlogBlock?.image?.height}
                   alt={blocksData?.whyStartedBlogBlock?.image?.name}

@@ -8,6 +8,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Link from "next/link";
+import { getStrapiMedia } from "@/lib/utils";
 
 const CategorySection = () => {
   const [categories, setCategories] = useState([]);
@@ -23,9 +24,7 @@ const CategorySection = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await fetch(
-          `${process.env.STRAPI_CLOUD_URL || process.env.STRAPI_LOCAL_URL}/api/home-page?${query}`,
-        );
+        const response = await fetch(`/api/home-page?${query}`);
         const data = await response.json();
         console.log(data);
         setCategories(data.data.categories || []);
@@ -52,7 +51,7 @@ const CategorySection = () => {
                 >
                   <div className={categoryStyles.iconBg}>
                     <Image
-                      src={`${process.env.STRAPI_CLOUD_URL || process.env.STRAPI_LOCAL_URL}${category.icon.url}`}
+                      src={getStrapiMedia(category.icon.url)}
                       alt={category.title}
                       width={category.icon.width}
                       height={category.icon.height}

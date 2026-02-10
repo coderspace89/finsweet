@@ -9,6 +9,7 @@ import Col from "react-bootstrap/Col";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { getStrapiMedia } from "@/lib/utils";
 
 const AuthorPage = ({ slug }) => {
   const [authorData, setAuthorData] = useState([]);
@@ -33,7 +34,7 @@ const AuthorPage = ({ slug }) => {
 
   useEffect(() => {
     const fetchAuthor = async () => {
-      const apiUrl = `${process.env.STRAPI_CLOUD_URL || process.env.STRAPI_LOCAL_URL}/api/authors?${queryString}`;
+      const apiUrl = `/api/authors?${queryString}`;
       const response = await fetch(apiUrl);
       const data = await response.json();
       console.log(data?.data);
@@ -63,7 +64,7 @@ const AuthorPage = ({ slug }) => {
 
   useEffect(() => {
     const fetchArticles = async () => {
-      const apiUrl = `${process.env.STRAPI_CLOUD_URL || process.env.STRAPI_LOCAL_URL}/api/articles?${articlesQueryString}`;
+      const apiUrl = `/api/articles?${articlesQueryString}`;
       const response = await fetch(apiUrl);
       const data = await response.json();
       console.log(data?.data);
@@ -87,7 +88,7 @@ const AuthorPage = ({ slug }) => {
                   <Col lg={4}>
                     {author?.image && (
                       <Image
-                        src={`${process.env.STRAPI_CLOUD_URL || process.env.STRAPI_LOCAL_URL}${author?.image?.url}`}
+                        src={getStrapiMedia(author?.image?.url)}
                         width={author?.image?.width}
                         height={author?.image?.height}
                         alt={author?.image?.name}
@@ -110,7 +111,7 @@ const AuthorPage = ({ slug }) => {
                           <Link href={socialLink?.url}>
                             {socialLink?.icon && (
                               <Image
-                                src={`${process.env.STRAPI_CLOUD_URL || process.env.STRAPI_LOCAL_URL}${socialLink?.icon?.url}`}
+                                src={getStrapiMedia(socialLink?.icon?.url)}
                                 width={socialLink?.icon?.width}
                                 height={socialLink?.icon?.height}
                                 alt={socialLink?.icon?.name}
@@ -163,7 +164,7 @@ const AuthorPage = ({ slug }) => {
                       <div className={authorPageStyles.articleImageContainer}>
                         {article?.image && (
                           <Image
-                            src={`${process.env.STRAPI_CLOUD_URL || process.env.STRAPI_LOCAL_URL}${article?.image?.url}`}
+                            src={getStrapiMedia(article?.image?.url)}
                             width={article?.image.width}
                             height={article?.image?.height}
                             alt={article?.image?.name}

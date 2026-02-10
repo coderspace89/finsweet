@@ -7,6 +7,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import qs from "qs";
 import Image from "next/image";
+import { getStrapiMedia } from "@/lib/utils";
 
 const FeaturedSection = () => {
   const [featuredData, setFeaturedData] = useState(null);
@@ -26,7 +27,7 @@ const FeaturedSection = () => {
       };
 
       const queryString = qs.stringify(urlParamsObject);
-      const requestUrl = `${process.env.STRAPI_CLOUD_URL || process.env.STRAPI_LOCAL_URL}/api/home-page?${queryString}`;
+      const requestUrl = `/api/home-page?${queryString}`;
 
       try {
         const response = await fetch(requestUrl);
@@ -54,7 +55,7 @@ const FeaturedSection = () => {
                 {featuredData[0].logoImages.map((logo, index) => (
                   <Image
                     key={index}
-                    src={`${process.env.STRAPI_CLOUD_URL || process.env.STRAPI_LOCAL_URL}${logo.image.url}`}
+                    src={getStrapiMedia(logo.image.url)}
                     alt={logo.image.alternativeText || `Logo ${index}`}
                     width={logo.image.width}
                     height={logo.image.height}

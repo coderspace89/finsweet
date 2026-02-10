@@ -9,6 +9,7 @@ import qs from "qs";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { fab } from "@fortawesome/free-brands-svg-icons";
 import { library } from "@fortawesome/fontawesome-svg-core";
+import { getStrapiMedia } from "@/lib/utils";
 
 library.add(fab);
 
@@ -30,9 +31,7 @@ const AboutPageAuthors = () => {
   useEffect(() => {
     const fetchAuthorsList = async () => {
       try {
-        const response = await fetch(
-          `${process.env.STRAPI_CLOUD_URL || process.env.STRAPI_LOCAL_URL}/api/about-page?${query}`,
-        );
+        const response = await fetch(`/api/about-page?${query}`);
         const data = await response.json();
         console.log(data.data.AuthorsList.authors);
         setAuthors(data.data.AuthorsList.authors);
@@ -45,8 +44,8 @@ const AboutPageAuthors = () => {
 
   if (!authors) return <div>Loading...</div>;
 
-  const imageUrls = authors?.map(
-    (author) => `${process.env.STRAPI_CLOUD_URL || process.env.STRAPI_LOCAL_URL}${author?.image?.url}`,
+  const imageUrls = authors?.map((author) =>
+    getStrapiMedia(author?.image?.url),
   );
   return (
     <section className={authorsListStyles.authorSection}>

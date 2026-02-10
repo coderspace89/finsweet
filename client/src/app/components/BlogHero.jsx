@@ -8,6 +8,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import Image from "next/image";
+import { getStrapiMedia } from "@/lib/utils";
 
 const BlogHero = () => {
   const [blogHeroData, setBlogHeroData] = useState({});
@@ -25,7 +26,7 @@ const BlogHero = () => {
 
   useEffect(() => {
     const fetchBlogHero = async () => {
-      const apiUrl = `${process.env.STRAPI_CLOUD_URL || process.env.STRAPI_LOCAL_URL}/api/blog-page?${queryString}`;
+      const apiUrl = `/api/blog-page?${queryString}`;
       const response = await fetch(apiUrl);
       const data = await response.json();
       console.log(data?.data);
@@ -42,6 +43,8 @@ const BlogHero = () => {
       year: "numeric",
     });
   }
+
+  const imageUrl = getStrapiMedia(blogHeroData?.featuredPost?.image?.url);
 
   return (
     <section className={blogHeroStyles.sectionBg}>
@@ -71,7 +74,7 @@ const BlogHero = () => {
             <div>
               {blogHeroData?.featuredPost?.image && (
                 <Image
-                  src={`${process.env.STRAPI_CLOUD_URL || process.env.STRAPI_LOCAL_URL}${blogHeroData?.featuredPost?.image?.url}`}
+                  src={imageUrl}
                   width={blogHeroData?.featuredPost?.image?.width}
                   height={blogHeroData?.featuredPost?.image?.height}
                   className={blogHeroStyles.heroImage}

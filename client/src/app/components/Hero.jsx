@@ -7,6 +7,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
+import { getStrapiMedia } from "@/lib/utils";
 
 const Hero = () => {
   const [homePageData, sethomePageData] = useState(null);
@@ -23,9 +24,7 @@ const Hero = () => {
 
   async function fetchData() {
     try {
-      const response = await fetch(
-        `${process.env.STRAPI_CLOUD_URL || process.env.STRAPI_LOCAL_URL}/api/home-page?${query}`,
-      );
+      const response = await fetch(`/api/home-page?${query}`);
       const data = await response.json();
       console.log(data);
       sethomePageData(data.data);
@@ -45,9 +44,7 @@ const Hero = () => {
   if (error) return <div>Error: {error.message}</div>;
   if (!homePageData) return <div>No data found</div>;
 
-  const heroImageUrl = homePageData.Hero?.image?.url
-    ? `${process.env.STRAPI_CLOUD_URL || process.env.STRAPI_LOCAL_URL}${homePageData.Hero.image.url}`
-    : null;
+  const heroImageUrl = getStrapiMedia(homePageData?.Hero?.image?.url);
 
   return (
     <section

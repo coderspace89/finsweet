@@ -7,6 +7,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Link from "next/link";
+import { getStrapiMedia } from "@/lib/utils";
 
 const DiscoverSection = () => {
   const query = qs.stringify({
@@ -22,9 +23,7 @@ const DiscoverSection = () => {
   useEffect(() => {
     const fetchDiscoverSection = async () => {
       try {
-        const response = await fetch(
-          `${process.env.STRAPI_CLOUD_URL || process.env.STRAPI_LOCAL_URL}/api/home-page?${query}`,
-        );
+        const response = await fetch(`/api/home-page?${query}`);
         const data = await response.json();
         console.log(data);
         setDiscoverSection(data.data.Discover);
@@ -37,7 +36,7 @@ const DiscoverSection = () => {
 
   if (!discoverSection) return <div>Loading...</div>;
 
-  const imageUrl = `${process.env.STRAPI_CLOUD_URL || process.env.STRAPI_LOCAL_URL}${discoverSection.image[0].url}`;
+  const imageUrl = getStrapiMedia(discoverSection?.image[0]?.url);
 
   return (
     <section className={discoverStyles.discoverSection}>

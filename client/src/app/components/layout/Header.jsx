@@ -8,6 +8,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Button from "react-bootstrap/Button";
 import Image from "next/image";
+import { getStrapiMedia } from "@/lib/utils";
 
 const Header = () => {
   const [headerData, setheaderData] = useState(null);
@@ -34,9 +35,7 @@ const Header = () => {
 
   async function fetchData() {
     try {
-      const response = await fetch(
-        `${process.env.STRAPI_CLOUD_URL || process.env.STRAPI_LOCAL_URL}/api/global?${globalSettingQuery}`
-      );
+      const response = await fetch(`/api/global?${globalSettingQuery}`);
       const data = await response.json();
       console.log(data);
       setheaderData(data.data);
@@ -56,6 +55,8 @@ const Header = () => {
   if (error) return <div>Error: {error.message}</div>;
   if (!headerData) return <div>No data found</div>;
 
+  const imageUrl = getStrapiMedia(headerData.header.logo.image.url);
+
   return (
     <section className={`${headerStyles.headerBg} fixed-top`}>
       <Navbar expand="lg">
@@ -63,7 +64,7 @@ const Header = () => {
           <Navbar.Brand href="/">
             {headerData?.header?.logo?.image && (
               <Image
-                src={`${process.env.STRAPI_CLOUD_URL || process.env.STRAPI_LOCAL_URL}${headerData.header.logo.image.url}`}
+                src={imageUrl}
                 alt={headerData.header.logo.image.alternativeText || "Logo"}
                 width={140}
                 height={28}

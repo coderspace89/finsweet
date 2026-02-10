@@ -9,6 +9,7 @@ import Col from "react-bootstrap/Col";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { getStrapiMedia } from "@/lib/utils";
 
 const CategoryPage = ({ slug }) => {
   const [articlesData, setArticlesData] = useState([]);
@@ -37,7 +38,7 @@ const CategoryPage = ({ slug }) => {
 
   useEffect(() => {
     const fetchArticles = async () => {
-      const apiUrl = `${process.env.STRAPI_CLOUD_URL || process.env.STRAPI_LOCAL_URL}/api/articles?${query}`;
+      const apiUrl = `/api/articles?${query}`;
       const response = await fetch(apiUrl);
       const data = await response.json();
       console.log(data?.data);
@@ -61,9 +62,7 @@ const CategoryPage = ({ slug }) => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await fetch(
-          `${process.env.STRAPI_CLOUD_URL || process.env.STRAPI_LOCAL_URL}/api/categories?${queryCategory}`,
-        );
+        const response = await fetch(`/api/categories?${queryCategory}`);
         const data = await response.json();
         console.log(data.data);
         setCategories(data.data || []);
@@ -97,9 +96,7 @@ const CategoryPage = ({ slug }) => {
   useEffect(() => {
     const fetchTags = async () => {
       try {
-        const response = await fetch(
-          `${process.env.STRAPI_CLOUD_URL || process.env.STRAPI_LOCAL_URL}/api/tags?${queryTag}`,
-        );
+        const response = await fetch(`/api/tags?${queryTag}`);
         const data = await response.json();
         console.log(data.data);
         setTagsData(data.data || []);
@@ -146,7 +143,7 @@ const CategoryPage = ({ slug }) => {
                     {article?.image && (
                       <div className={categoryPageStyles.imageContainer}>
                         <Image
-                          src={`${process.env.STRAPI_CLOUD_URL || process.env.STRAPI_LOCAL_URL}${article?.image?.url}`}
+                          src={getStrapiMedia(article?.image?.url)}
                           width={article?.image?.width}
                           height={article?.image?.height}
                           alt={article?.image?.name}
@@ -201,7 +198,7 @@ const CategoryPage = ({ slug }) => {
                     {category?.image && (
                       <div className={categoryPageStyles.categoryIconBg}>
                         <Image
-                          src={`${process.env.STRAPI_CLOUD_URL || process.env.STRAPI_LOCAL_URL}${category?.image?.url}`}
+                          src={getStrapiMedia(category?.image?.url)}
                           width={category?.image?.width}
                           height={category?.image?.height}
                           alt={category?.image?.name}

@@ -20,9 +20,7 @@ const JoinSection = () => {
   useEffect(() => {
     const fetchJoinSection = async () => {
       try {
-        const response = await fetch(
-          `${process.env.STRAPI_CLOUD_URL || process.env.STRAPI_LOCAL_URL}/api/home-page?${query}`,
-        );
+        const response = await fetch(`/api/home-page?${query}`);
         const data = await response.json();
         console.log(data.data.Join);
         setJoinData(data.data.Join);
