@@ -31,7 +31,7 @@ const ContactPage = () => {
 
   useEffect(() => {
     const fetchBlocksData = async () => {
-      const apiUrl = `http://localhost:1337/api/contact-page?${queryString}`;
+      const apiUrl = `${process.env.STRAPI_CLOUD_URL || process.env.STRAPI_LOCAL_URL}/api/contact-page?${queryString}`;
       const response = await fetch(apiUrl);
       const data = await response.json();
       console.log(data?.data);

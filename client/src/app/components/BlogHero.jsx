@@ -25,7 +25,7 @@ const BlogHero = () => {
 
   useEffect(() => {
     const fetchBlogHero = async () => {
-      const apiUrl = `http://localhost:1337/api/blog-page?${queryString}`;
+      const apiUrl = `${process.env.STRAPI_CLOUD_URL || process.env.STRAPI_LOCAL_URL}/api/blog-page?${queryString}`;
       const response = await fetch(apiUrl);
       const data = await response.json();
       console.log(data?.data);
@@ -71,7 +71,7 @@ const BlogHero = () => {
             <div>
               {blogHeroData?.featuredPost?.image && (
                 <Image
-                  src={`http://localhost:1337${blogHeroData?.featuredPost?.image?.url}`}
+                  src={`${process.env.STRAPI_CLOUD_URL || process.env.STRAPI_LOCAL_URL}${blogHeroData?.featuredPost?.image?.url}`}
                   width={blogHeroData?.featuredPost?.image?.width}
                   height={blogHeroData?.featuredPost?.image?.height}
                   className={blogHeroStyles.heroImage}

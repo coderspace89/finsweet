@@ -32,7 +32,7 @@ const AllPosts = () => {
 
   useEffect(() => {
     const fetchAllPosts = async () => {
-      const apiUrl = `http://localhost:1337/api/posts?${queryString}`;
+      const apiUrl = `${process.env.STRAPI_CLOUD_URL || process.env.STRAPI_LOCAL_URL}/api/posts?${queryString}`;
       const response = await fetch(apiUrl);
       const data = await response.json();
       console.log(data);
@@ -59,7 +59,7 @@ const AllPosts = () => {
               <Col lg={5}>
                 {post?.image && (
                   <Image
-                    src={`http://localhost:1337${post?.image?.url}`}
+                    src={`${process.env.STRAPI_CLOUD_URL || process.env.STRAPI_LOCAL_URL}${post?.image?.url}`}
                     width={post?.image.width}
                     height={post?.image?.height}
                     alt={post?.image?.name}

@@ -19,7 +19,7 @@ const BlogSection = () => {
   const postsPerPage = 4;
   const currentPage = 1;
   const queryObj = {
-    sort: ["date:asc"], 
+    sort: ["date:asc"],
     filters: {
       featured: {
         $eq: false,
@@ -37,7 +37,9 @@ const BlogSection = () => {
 
   useEffect(() => {
     // Fetch featured post
-    fetch(`http://localhost:1337/api/posts?${query}`)
+    fetch(
+      `${process.env.STRAPI_CLOUD_URL || process.env.STRAPI_LOCAL_URL}/api/posts?${query}`,
+    )
       .then((response) => response.json())
       .then((data) => {
         setFeaturedPost(data.data[0]);
@@ -46,7 +48,9 @@ const BlogSection = () => {
       .catch((error) => console.error("Error fetching featured post:", error));
 
     // Fetch all posts
-    fetch(`http://localhost:1337/api/posts?${queryString}`)
+    fetch(
+      `${process.env.STRAPI_CLOUD_URL || process.env.STRAPI_LOCAL_URL}/api/posts?${queryString}`,
+    )
       .then((response) => response.json())
       .then((data) => {
         setAllPosts(data.data);
@@ -77,7 +81,7 @@ const BlogSection = () => {
                   className="text-decoration-none"
                 >
                   <img
-                    src={`http://localhost:1337${featuredPost.image.url}`}
+                    src={`${process.env.STRAPI_CLOUD_URL || process.env.STRAPI_LOCAL_URL}${featuredPost.image.url}`}
                     alt={featuredPost.title}
                     className="img-fluid"
                   />

@@ -37,7 +37,7 @@ const CategoryPage = ({ slug }) => {
 
   useEffect(() => {
     const fetchArticles = async () => {
-      const apiUrl = `http://localhost:1337/api/articles?${query}`;
+      const apiUrl = `${process.env.STRAPI_CLOUD_URL || process.env.STRAPI_LOCAL_URL}/api/articles?${query}`;
       const response = await fetch(apiUrl);
       const data = await response.json();
       console.log(data?.data);
@@ -62,7 +62,7 @@ const CategoryPage = ({ slug }) => {
     const fetchCategories = async () => {
       try {
         const response = await fetch(
-          `http://localhost:1337/api/categories?${queryCategory}`,
+          `${process.env.STRAPI_CLOUD_URL || process.env.STRAPI_LOCAL_URL}/api/categories?${queryCategory}`,
         );
         const data = await response.json();
         console.log(data.data);
@@ -98,7 +98,7 @@ const CategoryPage = ({ slug }) => {
     const fetchTags = async () => {
       try {
         const response = await fetch(
-          `http://localhost:1337/api/tags?${queryTag}`,
+          `${process.env.STRAPI_CLOUD_URL || process.env.STRAPI_LOCAL_URL}/api/tags?${queryTag}`,
         );
         const data = await response.json();
         console.log(data.data);
@@ -146,7 +146,7 @@ const CategoryPage = ({ slug }) => {
                     {article?.image && (
                       <div className={categoryPageStyles.imageContainer}>
                         <Image
-                          src={`http://localhost:1337${article?.image?.url}`}
+                          src={`${process.env.STRAPI_CLOUD_URL || process.env.STRAPI_LOCAL_URL}${article?.image?.url}`}
                           width={article?.image?.width}
                           height={article?.image?.height}
                           alt={article?.image?.name}
@@ -201,7 +201,7 @@ const CategoryPage = ({ slug }) => {
                     {category?.image && (
                       <div className={categoryPageStyles.categoryIconBg}>
                         <Image
-                          src={`http://localhost:1337${category?.image?.url}`}
+                          src={`${process.env.STRAPI_CLOUD_URL || process.env.STRAPI_LOCAL_URL}${category?.image?.url}`}
                           width={category?.image?.width}
                           height={category?.image?.height}
                           alt={category?.image?.name}

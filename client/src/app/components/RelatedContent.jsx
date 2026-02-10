@@ -50,7 +50,7 @@ const RelatedContent = ({ slug }) => {
 
   useEffect(() => {
     const fetchRelatedContent = async () => {
-      const apiUrl = `http://localhost:1337/api/articles?${queryString}`;
+      const apiUrl = `${process.env.STRAPI_CLOUD_URL || process.env.STRAPI_LOCAL_URL}/api/articles?${queryString}`;
       const response = await fetch(apiUrl);
       const data = await response.json();
       console.log(data?.data[0].RelatedContent[0].RelatedArticlesSection);
@@ -87,7 +87,7 @@ const RelatedContent = ({ slug }) => {
                   {content?.image && (
                     <div className={relatedContentStyles.imageContainer}>
                       <Image
-                        src={`http://localhost:1337${content?.image?.url}`}
+                        src={`${process.env.STRAPI_CLOUD_URL || process.env.STRAPI_LOCAL_URL}${content?.image?.url}`}
                         width={content?.image?.width}
                         height={content?.image?.height}
                         alt={content?.image?.name}

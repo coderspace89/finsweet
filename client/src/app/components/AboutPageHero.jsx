@@ -29,7 +29,7 @@ const AboutPageHero = () => {
 
   useEffect(() => {
     const fetchAboutHero = async () => {
-      const apiUrl = `http://localhost:1337/api/about-page?${queryString}`;
+      const apiUrl = `${process.env.STRAPI_CLOUD_URL || process.env.STRAPI_LOCAL_URL}/api/about-page?${queryString}`;
       const response = await fetch(apiUrl);
       const data = await response.json();
       console.log(data?.data);
@@ -39,7 +39,7 @@ const AboutPageHero = () => {
   }, []);
 
   const heroImageUrl = aboutHeroData?.image?.url
-    ? `http://localhost:1337${aboutHeroData?.image?.url}`
+    ? `${process.env.STRAPI_CLOUD_URL || process.env.STRAPI_LOCAL_URL}${aboutHeroData?.image?.url}`
     : null;
 
   return (

@@ -30,7 +30,7 @@ const Testimonials = () => {
     const fetchTestimonials = async () => {
       try {
         const response = await fetch(
-          `http://localhost:1337/api/home-page?${query}`,
+          `${process.env.STRAPI_CLOUD_URL || process.env.STRAPI_LOCAL_URL}/api/home-page?${query}`,
         );
         const data = await response.json();
         console.log(data.data.Testimonials);
@@ -90,7 +90,7 @@ const Testimonials = () => {
                     <div className={testimonialStyles.authorContainer}>
                       <div className="d-flex align-items-center gap-3">
                         <Image
-                          src={`http://localhost:1337${testimonial.image?.url}`}
+                          src={`${process.env.STRAPI_CLOUD_URL || process.env.STRAPI_LOCAL_URL}${testimonial.image?.url}`}
                           alt={testimonial.authorName}
                           width={testimonial.image?.width}
                           height={testimonial.image?.height}

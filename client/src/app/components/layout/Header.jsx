@@ -35,7 +35,7 @@ const Header = () => {
   async function fetchData() {
     try {
       const response = await fetch(
-        `http://localhost:1337/api/global?${globalSettingQuery}`
+        `${process.env.STRAPI_CLOUD_URL || process.env.STRAPI_LOCAL_URL}/api/global?${globalSettingQuery}`
       );
       const data = await response.json();
       console.log(data);
@@ -63,7 +63,7 @@ const Header = () => {
           <Navbar.Brand href="/">
             {headerData?.header?.logo?.image && (
               <Image
-                src={`http://localhost:1337${headerData.header.logo.image.url}`}
+                src={`${process.env.STRAPI_CLOUD_URL || process.env.STRAPI_LOCAL_URL}${headerData.header.logo.image.url}`}
                 alt={headerData.header.logo.image.alternativeText || "Logo"}
                 width={140}
                 height={28}

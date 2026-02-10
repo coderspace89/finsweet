@@ -24,7 +24,7 @@ const AboutSection = () => {
   async function fetchData() {
     try {
       const response = await fetch(
-        `http://localhost:1337/api/home-page?${query}`
+        `${process.env.STRAPI_CLOUD_URL || process.env.STRAPI_LOCAL_URL}/api/home-page?${query}`
       );
       const data = await response.json();
       console.log(data);

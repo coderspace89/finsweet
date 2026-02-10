@@ -24,7 +24,7 @@ const CategorySection = () => {
     const fetchCategories = async () => {
       try {
         const response = await fetch(
-          `http://localhost:1337/api/home-page?${query}`,
+          `${process.env.STRAPI_CLOUD_URL || process.env.STRAPI_LOCAL_URL}/api/home-page?${query}`,
         );
         const data = await response.json();
         console.log(data);
@@ -52,7 +52,7 @@ const CategorySection = () => {
                 >
                   <div className={categoryStyles.iconBg}>
                     <Image
-                      src={`http://localhost:1337${category.icon.url}`}
+                      src={`${process.env.STRAPI_CLOUD_URL || process.env.STRAPI_LOCAL_URL}${category.icon.url}`}
                       alt={category.title}
                       width={category.icon.width}
                       height={category.icon.height}

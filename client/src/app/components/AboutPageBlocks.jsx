@@ -30,7 +30,7 @@ const AboutPageBlocks = () => {
 
   useEffect(() => {
     const fetchBlocksData = async () => {
-      const apiUrl = `http://localhost:1337/api/about-page?${queryString}`;
+      const apiUrl = `${process.env.STRAPI_CLOUD_URL || process.env.STRAPI_LOCAL_URL}/api/about-page?${queryString}`;
       const response = await fetch(apiUrl);
       const data = await response.json();
       console.log(data?.data);
@@ -60,7 +60,7 @@ const AboutPageBlocks = () => {
             <div>
               {blocksData?.teamCreativeBlock?.image && (
                 <Image
-                  src={`http://localhost:1337${blocksData?.teamCreativeBlock?.image?.url}`}
+                  src={`${process.env.STRAPI_CLOUD_URL || process.env.STRAPI_LOCAL_URL}${blocksData?.teamCreativeBlock?.image?.url}`}
                   width={blocksData?.teamCreativeBlock?.image?.width}
                   height={blocksData?.teamCreativeBlock?.image?.height}
                   alt={blocksData?.teamCreativeBlock?.image?.name}
@@ -75,7 +75,7 @@ const AboutPageBlocks = () => {
             <div>
               {blocksData?.whyStartedBlogBlock?.image && (
                 <Image
-                  src={`http://localhost:1337${
+                  src={`${process.env.STRAPI_CLOUD_URL || process.env.STRAPI_LOCAL_URL}${
                     blocksData?.whyStartedBlogBlock?.image?.url
                   }`}
                   width={blocksData?.whyStartedBlogBlock?.image?.width}

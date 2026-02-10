@@ -31,7 +31,7 @@ const AuthorsList = () => {
     const fetchAuthorsList = async () => {
       try {
         const response = await fetch(
-          `http://localhost:1337/api/home-page?${query}`,
+          `${process.env.STRAPI_CLOUD_URL || process.env.STRAPI_LOCAL_URL}/api/home-page?${query}`,
         );
         const data = await response.json();
         console.log(data.data.Authors.authors);
@@ -46,7 +46,8 @@ const AuthorsList = () => {
   if (!authors) return <div>Loading...</div>;
 
   const imageUrls = authors?.map(
-    (author) => `http://localhost:1337${author?.image?.url}`,
+    (author) =>
+      `${process.env.STRAPI_CLOUD_URL || process.env.STRAPI_LOCAL_URL}${author?.image?.url}`,
   );
 
   return (

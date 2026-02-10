@@ -12,7 +12,7 @@ const PrivacyPolicy = () => {
 
   useEffect(() => {
     const fetchPrivacyPolicyData = async () => {
-      const apiUrl = "http://localhost:1337/api/privacy-policy";
+      const apiUrl = `${process.env.STRAPI_CLOUD_URL || process.env.STRAPI_LOCAL_URL}/api/privacy-policy`;
       const response = await fetch(apiUrl);
       const data = await response.json();
       console.log(data?.data);

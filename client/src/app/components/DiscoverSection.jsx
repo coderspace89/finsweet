@@ -23,7 +23,7 @@ const DiscoverSection = () => {
     const fetchDiscoverSection = async () => {
       try {
         const response = await fetch(
-          `http://localhost:1337/api/home-page?${query}`
+          `${process.env.STRAPI_CLOUD_URL || process.env.STRAPI_LOCAL_URL}/api/home-page?${query}`,
         );
         const data = await response.json();
         console.log(data);
@@ -37,7 +37,7 @@ const DiscoverSection = () => {
 
   if (!discoverSection) return <div>Loading...</div>;
 
-  const imageUrl = `http://localhost:1337${discoverSection.image[0].url}`;
+  const imageUrl = `${process.env.STRAPI_CLOUD_URL || process.env.STRAPI_LOCAL_URL}${discoverSection.image[0].url}`;
 
   return (
     <section className={discoverStyles.discoverSection}>

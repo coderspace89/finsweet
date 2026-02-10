@@ -26,7 +26,7 @@ const FeaturedSection = () => {
       };
 
       const queryString = qs.stringify(urlParamsObject);
-      const requestUrl = `http://localhost:1337/api/home-page?${queryString}`;
+      const requestUrl = `${process.env.STRAPI_CLOUD_URL || process.env.STRAPI_LOCAL_URL}/api/home-page?${queryString}`;
 
       try {
         const response = await fetch(requestUrl);
@@ -54,7 +54,7 @@ const FeaturedSection = () => {
                 {featuredData[0].logoImages.map((logo, index) => (
                   <Image
                     key={index}
-                    src={`http://localhost:1337${logo.image.url}`}
+                    src={`${process.env.STRAPI_CLOUD_URL || process.env.STRAPI_LOCAL_URL}${logo.image.url}`}
                     alt={logo.image.alternativeText || `Logo ${index}`}
                     width={logo.image.width}
                     height={logo.image.height}

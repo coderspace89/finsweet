@@ -34,7 +34,7 @@ const TagPage = ({ slug }) => {
     const fetchTags = async () => {
       try {
         const response = await fetch(
-          `http://localhost:1337/api/tags?${queryTag}`,
+          `${process.env.STRAPI_CLOUD_URL || process.env.STRAPI_LOCAL_URL}/api/tags?${queryTag}`,
         );
         const data = await response.json();
         console.log(data.data);
@@ -64,7 +64,7 @@ const TagPage = ({ slug }) => {
                 <div className={tagPageStyles.articleImageContainer}>
                   {article?.image && (
                     <Image
-                      src={`http://localhost:1337${article?.image?.url}`}
+                      src={`${process.env.STRAPI_CLOUD_URL || process.env.STRAPI_LOCAL_URL}${article?.image?.url}`}
                       width={article?.image?.width}
                       height={article?.image?.height}
                       alt={article?.image?.name}

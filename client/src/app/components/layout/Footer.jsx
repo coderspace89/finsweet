@@ -32,7 +32,7 @@ const Footer = () => {
   const queryString = qs.stringify(queryObj, { encodeValuesOnly: true });
 
   async function FooterSection() {
-    const apiUrl = `http://localhost:1337/api/global?${queryString}`;
+    const apiUrl = `${process.env.STRAPI_CLOUD_URL || process.env.STRAPI_LOCAL_URL}/api/global?${queryString}`;
     const response = await fetch(apiUrl);
     const data = await response.json();
     console.log(data?.data?.Footer);
@@ -53,7 +53,7 @@ const Footer = () => {
             >
               {footerData?.image && (
                 <Image
-                  src={`http://localhost:1337${footerData.image.url}`}
+                  src={`${process.env.STRAPI_CLOUD_URL || process.env.STRAPI_LOCAL_URL}${footerData.image.url}`}
                   width={footerData.image.width}
                   height={footerData.image.height}
                   alt={footerData.logoText}
@@ -116,7 +116,7 @@ const Footer = () => {
                 {footerData?.SocialLinks?.map((item, index) => (
                   <Link key={index} href={item.url}>
                     <Image
-                      src={`http://localhost:1337${item.icon.url}`}
+                      src={`${process.env.STRAPI_CLOUD_URL || process.env.STRAPI_LOCAL_URL}${item.icon.url}`}
                       width={item.icon.width}
                       height={item.icon.height}
                       alt={item.icon.name}
