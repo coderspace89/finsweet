@@ -35,7 +35,7 @@ export async function POST(req) {
     // --- Example: Sending to Strapi (Uncomment and configure if you have a submission type) ---
 
     const strapiUrl =
-      process.env.NEXT_PUBLIC_STRAPI_URL || "http://localhost:1337";
+      process.env.NEXT_PUBLIC_STRAPI_CLOUD_URL || "http://localhost:1337";
     const strapiResponse = await fetch(`${strapiUrl}/api/contact-submissions`, {
       method: "POST",
       headers: {
