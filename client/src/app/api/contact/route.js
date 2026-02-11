@@ -7,7 +7,7 @@ export async function POST(req) {
     const { fullName, email, queryRelated, message } = data;
 
     // 1. Validation
-    if (!fullName || !email || !message) {
+    if (!data) {
       return NextResponse.json(
         { message: "All fields are required." },
         { status: 400 },
@@ -33,10 +33,10 @@ export async function POST(req) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         data: {
-          fullName,
-          email,
-          queryRelated,
-          message,
+          fullName: data.fullName,
+          email: data.email,
+          queryRelated: data.queryRelated,
+          message: data.message,
           submittedAt: new Date().toISOString(),
         },
       }),
