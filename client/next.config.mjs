@@ -20,12 +20,24 @@ const nextConfig = {
     unoptimized: true,
   },
   async rewrites() {
+    const strapiUrl = process.env.NEXT_PUBLIC_STRAPI_CLOUD_URL;
+
+    // Only attempt rewrite if the production URL is actually found
+    if (strapiUrl) {
+      return [
+        {
+          source: "/api/:path*",
+          // .replace(/\/$/, "") safely removes any trailing slash if it exists
+          destination: `${strapiUrl.replace(/\/$/, "")}/api/:path*`,
+        },
+      ];
+    }
+
+    // Local fallback for development only
     return [
       {
-        // Intercepts all requests starting with /api
         source: "/api/:path*",
-        // Proxies them to your Strapi backend
-        destination: `${process.env.NEXT_PUBLIC_STRAPI_CLOUD_URL || "http://localhost:1337"}/api/:path*`,
+        destination: "http://localhost:1337/api/:path*",
       },
     ];
   },
