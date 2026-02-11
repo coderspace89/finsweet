@@ -2,94 +2,83 @@ import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 
 export async function POST(req) {
-  const data = await req.json();
-  const { fullName, email, queryRelated, message } = data;
-  console.log(data);
-
-  // 3. Basic server-side validation
-  if (!data) {
-    return NextResponse.json(
-      { message: "All fields are required." },
-      { status: 400 },
-    );
-  }
-
-  // Basic email format validation
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (!emailRegex.test(email)) {
-    return NextResponse.json(
-      { message: "Invalid email format." },
-      { status: 400 },
-    );
-  }
-
   try {
-    // 4. Process the data (e.g., send email, save to Strapi)
-    // For now, we'll just log it and send a success response.
-    console.log("Received contact form submission:");
-    console.log(`Full Name: ${fullName}`);
-    console.log(`Email: ${email}`);
-    console.log(`Query Related: ${queryRelated}`);
-    console.log(`Message: ${message}`);
+    const data = await req.json();
+    const { fullName, email, queryRelated, message } = data;
 
-    // --- Example: Sending to Strapi (Uncomment and configure if you have a submission type) ---
+    // 1. Validation
+    if (!fullName || !email || !message) {
+      return NextResponse.json(
+        { message: "All fields are required." },
+        { status: 400 },
+      );
+    }
 
-    const strapiUrl =
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return NextResponse.json(
+        { message: "Invalid email format." },
+        { status: 400 },
+      );
+    }
+
+    // 2. Save to Strapi
+    // Safely handle trailing slashes from environment variables
+    const rawUrl =
       process.env.NEXT_PUBLIC_STRAPI_CLOUD_URL || "http://localhost:1337";
+    const strapiUrl = rawUrl.replace(/\/$/, "");
+
     const strapiResponse = await fetch(`${strapiUrl}/api/contact-submissions`, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        // 'Authorization': `Bearer ${process.env.STRAPI_WRITE_TOKEN}`, // If your Strapi endpoint requires auth
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         data: {
-          fullName: data.fullName,
-          email: data.email,
-          queryRelated: data.queryRelated,
-          message: data.message,
-          submittedAt: new Date().toISOString(), // Add a timestamp
+          fullName,
+          email,
+          queryRelated,
+          message,
+          submittedAt: new Date().toISOString(),
         },
       }),
     });
 
     if (!strapiResponse.ok) {
       const errorData = await strapiResponse.json();
-      console.error("Failed to save to Strapi:", errorData);
+      console.error("Strapi Error:", errorData);
       return NextResponse.json(
-        { message: "Failed to submit form (Strapi error)." },
+        { message: "Failed to save to database." },
         { status: 500 },
       );
     }
 
-    // --- Sending an email (requires external service like Nodemailer, SendGrid, etc.) ---
+    // 3. Send Email
     const transporter = nodemailer.createTransport({
       host: process.env.EMAIL_HOST,
       port: process.env.EMAIL_PORT,
+      secure: process.env.EMAIL_PORT == 465, // Use true for 465, false for other ports
       auth: {
         user: process.env.EMAIL_USERNAME,
         pass: process.env.EMAIL_PASSWORD,
       },
     });
+
     await transporter.sendMail({
       from: process.env.EMAIL_FROM,
-      to: data.email,
+      to: email,
       subject: `New Contact Form Submission - ${queryRelated}`,
-      text: `
-    Full Name: ${fullName}
-    Email: ${email}
-    Query Related: ${queryRelated}
-    Message: ${message}
-    `,
+      text: `Full Name: ${fullName}\nEmail: ${email}\nMessage: ${message}`,
     });
 
-    // 5. Send a success response
     return NextResponse.json(
       { message: "Form submitted successfully!" },
       { status: 200 },
     );
   } catch (error) {
     console.error("Error handling contact form submission:", error);
-    NextResponse.json({ message: "Internal server error." }, { status: 500 });
+    // CRITICAL: You MUST use 'return' here
+    return NextResponse.json(
+      { message: "Internal server error." },
+      { status: 500 },
+    );
   }
 }
