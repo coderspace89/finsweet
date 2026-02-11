@@ -36,10 +36,11 @@ export async function POST(req) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         data: {
-          fullName: data.fullName,
-          email: data.email,
-          queryRelated: data.queryRelated,
-          message: data.message,
+          fullName: data.fullName.trim(),
+          email: data.email.trim(),
+          // Force exact match and remove hidden spaces/newlines
+          queryRelated: data.queryRelated ? data.queryRelated.trim() : "",
+          message: data.message.trim(),
           submittedAt: new Date().toISOString(),
         },
       }),
