@@ -20,7 +20,9 @@ const nextConfig = {
     unoptimized: true,
   },
   async rewrites() {
-    const strapiUrl = process.env.NEXT_PUBLIC_STRAPI_CLOUD_URL;
+    const strapiUrl =
+      process.env.NEXT_PUBLIC_STRAPI_CLOUD_URL ||
+      "https://steadfast-flame-a9e93be747.strapiapp.com";
 
     // Only attempt rewrite if the production URL is actually found
     if (strapiUrl) {
