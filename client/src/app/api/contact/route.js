@@ -26,9 +26,10 @@ export async function POST(req) {
     // Safely handle trailing slashes from environment variables
     const strapiUrl =
       process.env.NEXT_PUBLIC_STRAPI_CLOUD_URL ||
-      "http://localhost:1337" ||
-      "https://steadfast-flame-a9e93be747.strapiapp.com";
+      "https://steadfast-flame-a9e93be747.strapiapp.com" ||
+      "http://localhost:1337";
     // const strapiUrl = rawUrl.replace(/\/$/, "");
+    console.log(strapiUrl);
 
     const strapiResponse = await fetch(`${strapiUrl}/api/contact-submissions`, {
       method: "POST",
