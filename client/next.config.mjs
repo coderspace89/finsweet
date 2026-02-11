@@ -13,7 +13,7 @@ const nextConfig = {
       // Strapi Cloud
       {
         protocol: "https",
-        hostname: "**.strapiapp.com",
+        hostname: "**.media.strapiapp.com",
         pathname: "/uploads/**",
       },
     ],

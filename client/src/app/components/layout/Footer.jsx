@@ -54,7 +54,7 @@ const Footer = () => {
             >
               {footerData?.image && (
                 <Image
-                  src={`${process.env.STRAPI_CLOUD_URL || process.env.STRAPI_LOCAL_URL}${footerData.image.url}`}
+                  src={getStrapiMedia(footerData.image.url)}
                   width={footerData.image.width}
                   height={footerData.image.height}
                   alt={footerData.logoText}
