@@ -25,7 +25,7 @@ const nextConfig = {
         // Intercepts all requests starting with /api
         source: "/api/:path*",
         // Proxies them to your Strapi backend
-        destination: `${process.env.STRAPI_CLOUD_URL || "http://localhost:1337"}/api/:path*`,
+        destination: `${process.env.NEXT_PUBLIC_STRAPI_CLOUD_URL || "http://localhost:1337"}/api/:path*`,
       },
     ];
   },
